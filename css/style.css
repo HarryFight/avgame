@@ -1,0 +1,113 @@
+[v-cloak] {
+	display: none;
+}
+/*手机外形定义*/
+.phone-screen{
+	border-bottom: 50px solid transparent;
+}
+.phone-home{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	height: 50px;
+	background: black;
+}
+.home-btn{
+	width: 40px;
+	height: 40px;
+	margin: 5px auto;
+	background: dimgrey;
+	border-radius: 45px;
+}
+/*end*/
+
+
+/*屏幕显示区域*/
+
+/*手机头部状态栏*/
+.phone-top-bar{
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	left: 0;
+	height: 20px;
+
+	background: black;
+	font-size: 12px;
+	color: #ffffff;
+	text-align: center;
+}
+.phone-container{
+	width: 100%;
+	height: 100%;
+	border-top: 20px solid transparent;
+}
+.phone-content{
+	width: 100%;
+	height: 100%;
+}
+.show{
+	display: block;
+}
+
+
+
+/*桌面*/
+.phone-desktop .app-icon-list{
+	clear: both;
+}
+.phone-desktop .app-icon-list li{
+	float: left;
+	margin: 14px;
+	width: 65px;
+}
+.phone-desktop .app-icon{
+	width: 60px;
+	height: 60px;
+	background: #777;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+.phone-desktop .ui-footer{
+	height: 80px;
+	padding-top: 20px;
+	bottom: 50px;
+}
+
+/*消息对话*/
+.phone-msg-title{
+	font-size: 16px;
+	font-family: 微软雅黑;
+	width: 373px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	background: #ececec;
+	border: 1px solid #000000;
+}
+.phone-msg-detail{
+	border-bottom: 80px solid transparent;
+}
+.phone-msg-detail .left-msg .ui-list-info{
+	text-align: left;
+}
+.phone-msg-detail .right-msg .ui-list-info{
+	text-align: right;
+}
+.phone-msg-detail .chat-answer{
+	position: fixed;
+	bottom: 50px;
+	background: #e0e0e0;
+	height: 80px;
+}
+.phone-msg-detail .chat-answer-option{
+	background: #f5f5f5;
+	margin: 5px;
+	cursor: pointer;
+}
+.phone-msg-detail .chat-answer-option:hover{
+	background: #ffffff;
+}
+.phone-msg-detail .chat-line .ui-avatar-s{
+	line-height: 40px;
+}

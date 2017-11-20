@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>game demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link href="lib/frozen/css/frozen.css" rel="stylesheet">
+	    <script src="lib/frozen/js/lib/zepto.min.js"></script>
+	    <script src="lib/frozen/js/frozen.js"></script>
+
+	    <link href="css/style.css" rel="stylesheet">
+        <script src='lib/vue.js'></script>
+
+	    <script src="js/config.js"></script>
+    </head>
+    <body>
+        <!--这个地方放手机壳的图-->
+        <div id="app" v-cloak>
+
+	        <!--手机屏幕显示范围-->
+	        <div class="phone-screen">
+		        <!--手机头部状态栏-->
+		        <div class="phone-top-bar">11:45PM</div>
+
+		        <!--手机内容容器，可以切换展示的部分-->
+		        <div class="ui-container ui-center phone-container">
+
+
+			        <!--桌面容器-->
+			        <div class="phone-content phone-desktop" v-show="contentShow.desktop">
+				        <ul class="app-icon-list">
+					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <li class="ui-reddot"><div class="app-icon"></div><p>不可思议</p></li>
+				        </ul>
+
+				        <div class="ui-footer ui-footer-stable ui-border-t" v-show="contentShow.desktop">
+					        <ul class="ui-tiled">
+						        <li><div class="app-icon">电话</div></li>
+						        <li @click="onActon('openContacts')"><div class="app-icon">消息</div></li>
+						        <li><div class="app-icon">相册</div></li>
+					        </ul>
+				        </div>
+			        </div>
+
+			        <!--消息对话界面-->
+			        <div class="phone-content phone-msg-detail" v-show="contentShow.msgDetail">
+				        <div class="phone-msg-title">未知用户</div>
+				        <ul class="ui-list chat-list">
+					        <li v-for="line in chatList"
+					            :class="{'left-msg': line.isFriend ,'right-msg':!line.isFriend}"
+					            class="ui-border-t left-msg chat-line">
+						        <template v-if="line.isFriend">
+							        <div class="ui-avatar-s">
+								        <span>{{ line.name }}</span>
+							        </div>
+							        <div class="ui-list-info">
+								        <p>{{ line.msg }}</p>
+							        </div>
+						        </template>
+						        <template v-else>
+							        <div class="ui-list-info">
+								        <p>{{ line.msg }}</p>
+							        </div>
+							        <div class="ui-avatar-s">
+								        <span>{{ line.name }}</span>
+							        </div>
+						        </template>
+					        </li>
+				        </ul>
+
+				        <!--选择回复框-->
+				        <ul class="ui-row-flex chat-answer" v-show="chatAnswerShow">
+					        <li v-for="answer in chatAnswer"
+					            @click="onSelectAnswer(answer)"
+					            class="ui-col ui-flex ui-flex-pack-center chat-answer-option">
+						        <div>{{ answer.msg }}</div>
+					        </li>
+				        </ul>
+			        </div>
+
+		         </div>
+	        </div>
+
+	        <div class="phone-home">
+		        <div class="home-btn" @click="onActon('toHome')"></div>
+	        </div>
+        </div>
+
+
+        <script src="js/index.js"></script>
+    </body>
+</html>
