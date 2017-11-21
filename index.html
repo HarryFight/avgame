@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>game demo</title>
+        <title>不可思议</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link href="lib/frozen/css/frozen.css" rel="stylesheet">
@@ -33,22 +33,149 @@
 					        <li><div class="app-icon"></div><p>xxx</p></li>
 					        <li><div class="app-icon"></div><p>xxx</p></li>
 					        <li><div class="app-icon"></div><p>xxx</p></li>
-					        <li><div class="app-icon"></div><p>xxx</p></li>
-					        <li class="ui-reddot"><div class="app-icon"></div><p>不可思议</p></li>
+					        <li @click="onAction('openMail')">
+								<i class="ui-reddot"></i>
+								<div class="app-icon"></div>
+								<p>邮件</p>
+							</li>
+					        <li @click="onAction('unlock')">
+								<i class="ui-reddot"></i>
+								<div class="app-icon"></div>
+								<p>不可思议</p>
+							</li>
 				        </ul>
 
 				        <div class="ui-footer ui-footer-stable ui-border-t" v-show="contentShow.desktop">
 					        <ul class="ui-tiled">
-						        <li><div class="app-icon">电话</div></li>
-						        <li @click="onActon('openContacts')"><div class="app-icon">消息</div></li>
-						        <li><div class="app-icon">相册</div></li>
+						        <li><div class="app-icon" @click="onAction('openCall')">电话</div></li>
+						        <li @click="onAction('openMsg')"><div class="app-icon"><i class="ui-icon-personal"></i></div></li>
+						        <li><div class="app-icon" @click="onAction('openImage')"><i class="ui-icon-thumb"></i></div></li>
 					        </ul>
 				        </div>
 			        </div>
 
+					<!--输入密码界面-->
+					<div class="phone-content phone-psw" v-show="contentShow.psw">
+						<div>
+							<img src="img/psw.png" @click="onAction('toHome')">
+						</div>
+					</div>
+
+					<!--电话界面-->
+					<div class="phone-content phone-call" v-show="contentShow.call">
+						<div>
+							<img src="img/call.png" @click="onAction('toHome')">
+						</div>
+					</div>
+
+					<!--相册界面-->
+					<div class="phone-content phone-image" v-show="contentShow.image">
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
+							<i>相册</i>
+						</div>
+						<div>
+							<img src="img/image.png" @click="onAction('toHome')">
+						</div>
+					</div>
+
+					<!--邮件收件箱-->
+					<div class="phone-content phone-mail" v-show="contentShow.mail">
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
+							<i>收件箱</i>
+						</div>
+						<ul class="ui-list ui-border-tb phone-mail-list">
+							<li class="ui-border-t" @click="onAction('openMailDetail')">
+								<div class="ui-avatar">
+									<i class="ui-reddot"></i>
+									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+								</div>
+								<div class="ui-list-info">
+									<i>10月1日</i>
+									<h4 class="ui-nowrap">未知人士</h4>
+									<p class="ui-nowrap">救命！ 你能救救我么？</p>
+								</div>
+							</li>
+							<li class="ui-border-t">
+								<div class="ui-avatar">
+									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+								</div>
+								<div class="ui-list-info">
+									<i>1分钟前</i>
+									<h4 class="ui-nowrap">腾讯科技</h4>
+									<p class="ui-nowrap">恭喜你，你中了我司1000股股票！</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!--邮件收件箱-详情-->
+					<div class="phone-content phone-mail-detail" v-show="contentShow.mailDetail">
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('openMail')"></i>
+							<i>收件箱</i>
+						</div>
+						<div class="mail">
+							<div class="mail-head">
+								<h3>【一封来自陌生人的信】</h3>
+								<br>
+								<p>发件人: <span>未知人士</span></p>
+								<p>收件人: <span>harry</span></p>
+								<p>时间: <span>一分钟前</span></p>
+							</div>
+							<hr>
+							<div class="mail-content">
+								救命！ 你能救救我么？
+							</div>
+						</div>
+					</div>
+
+					<!--聊天室列表-->
+					<div class="phone-content phone-msg" v-show="contentShow.msg">
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
+							<i>聊天室</i>
+						</div>
+						<ul class="ui-list ui-border-tb">
+							<li class="ui-border-t">
+								<div class="ui-list-thumb">
+									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+								</div>
+								<div class="ui-list-info">
+									<h4 class="ui-nowrap">群聊</h4>
+									<i>一分钟前</i>
+								</div>
+							</li>
+							<li class="ui-border-t" @click="onAction('openContacts')">
+								<div class="ui-list-thumb">
+									<i class="ui-reddot"></i>
+									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+								</div>
+								<div class="ui-list-info">
+									<h4 class="ui-nowrap">未知人士</h4>
+									<i>一分钟前</i>
+								</div>
+							</li>
+							<li class="ui-border-t">
+								<div class="ui-list-thumb">
+									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+								</div>
+								<div class="ui-list-info">
+									<h4 class="ui-nowrap">harry</h4>
+									<i>一分钟前</i>
+								</div>
+							</li>
+						</ul>
+					</div>
+
 			        <!--消息对话界面-->
 			        <div class="phone-content phone-msg-detail" v-show="contentShow.msgDetail">
-				        <div class="phone-msg-title">未知用户</div>
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
+							<i>未知用户</i>
+						</div>
+
 				        <ul class="ui-list chat-list">
 					        <li v-for="line in chatList"
 					            :class="{'left-msg': line.isFriend ,'right-msg':!line.isFriend}"
@@ -81,16 +208,20 @@
 					        </li>
 				        </ul>
 			        </div>
-
 		         </div>
 	        </div>
 
 	        <div class="phone-home">
-		        <div class="home-btn" @click="onActon('toHome')"></div>
+		        <div class="home-btn" @click="onAction('toHome')"></div>
 	        </div>
         </div>
 
 
+		<script>
+	        if(document.body.clientWidth >1000){
+		        alert('请在手机端访问此demo，获得最佳效果')
+	        }
+		</script>
         <script src="js/index.js"></script>
     </body>
 </html>
