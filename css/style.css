@@ -84,6 +84,7 @@
 	text-align: center;
 	background: #ececec;
 	border: 1px solid #000000;
+	margin: 0 auto;
 }
 .phone-msg-detail{
 	border-bottom: 80px solid transparent;
