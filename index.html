@@ -47,9 +47,18 @@
 
 				        <div class="ui-footer ui-footer-stable ui-border-t" v-show="contentShow.desktop">
 					        <ul class="ui-tiled">
-						        <li><div class="app-icon" @click="onAction('openCall')">电话</div></li>
-						        <li @click="onAction('openMsg')"><div class="app-icon"><i class="ui-icon-personal"></i></div></li>
-						        <li><div class="app-icon" @click="onAction('openImage')"><i class="ui-icon-thumb"></i></div></li>
+						        <li>
+							        <div class="app-icon" @click="onAction('openCall')">电话</div>
+						        </li>
+						        <li @click="onAction('openMsg')">
+							        <div class="app-icon">
+								        <i class="ui-reddot"></i>
+								        <i class="ui-icon-personal"></i>
+							        </div>
+						        </li>
+						        <li>
+							        <div class="app-icon" @click="onAction('openImage')"><i class="ui-icon-thumb"></i></div>
+						        </li>
 					        </ul>
 				        </div>
 			        </div>
@@ -63,8 +72,12 @@
 
 					<!--电话界面-->
 					<div class="phone-content phone-call" v-show="contentShow.call">
+						<div class="phone-title">
+							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
+							<i></i>
+						</div>
 						<div>
-							<img src="img/call.png" @click="onAction('toHome')">
+							<img src="img/call.png">
 						</div>
 					</div>
 
@@ -75,9 +88,31 @@
 							<i>相册</i>
 						</div>
 						<div>
-							<img src="img/image.png" @click="onAction('toHome')">
+							<img src="img/image.png" @click="onAction('openImageList')">
 						</div>
 					</div>
+
+			        <!--相册二级界面-->
+			        <div class="phone-content phone-image" v-show="contentShow.imageList">
+				        <div class="phone-title">
+					        <i class="ui-icon-return title-back" @click="onAction('openImage')"></i>
+					        <i>相册</i>
+				        </div>
+				        <div>
+					        <img src="img/image-list.png" @click="onAction('openImageListDetail')">
+				        </div>
+			        </div>
+
+			        <!--相册单张图预览界面-->
+			        <div class="phone-content phone-image" v-show="contentShow.imageListDetail">
+				        <div class="phone-title">
+					        <i class="ui-icon-return title-back" @click="onAction('openImageList')"></i>
+					        <i>相册</i>
+				        </div>
+				        <div>
+					        <img src="img/image-list-detail.png">
+				        </div>
+			        </div>
 
 					<!--邮件收件箱-->
 					<div class="phone-content phone-mail" v-show="contentShow.mail">
@@ -138,32 +173,14 @@
 							<i>聊天室</i>
 						</div>
 						<ul class="ui-list ui-border-tb">
-							<li class="ui-border-t">
+							<li class="ui-border-t"
+							    v-for="room in chatRoomList"
+								@click="onAction('openContacts',room.roomId)">
 								<div class="ui-list-thumb">
 									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
 								</div>
 								<div class="ui-list-info">
-									<h4 class="ui-nowrap">群聊</h4>
-									<i>一分钟前</i>
-								</div>
-							</li>
-							<li class="ui-border-t" @click="onAction('openContacts')">
-								<div class="ui-list-thumb">
-									<i class="ui-reddot"></i>
-									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
-								</div>
-								<div class="ui-list-info">
-									<h4 class="ui-nowrap">未知人士</h4>
-									<i>一分钟前</i>
-								</div>
-							</li>
-							<li class="ui-border-t">
-								<div class="ui-list-thumb">
-									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
-								</div>
-								<div class="ui-list-info">
-									<h4 class="ui-nowrap">harry</h4>
-									<i>一分钟前</i>
+									<h4 class="ui-nowrap">{{ room.roomName }}</h4>
 								</div>
 							</li>
 						</ul>
@@ -172,8 +189,8 @@
 			        <!--消息对话界面-->
 			        <div class="phone-content phone-msg-detail" v-show="contentShow.msgDetail">
 						<div class="phone-title">
-							<i class="ui-icon-return title-back" @click="onAction('toHome')"></i>
-							<i>未知用户</i>
+							<i class="ui-icon-return title-back" @click="onAction('openMsg')"></i>
+							<i>{{ currentChatRoom.roomName }}</i>
 						</div>
 
 				        <ul class="ui-list chat-list">

@@ -3,6 +3,11 @@ var GameUI = new Vue({
 	data: {
 		// 全局控制参数
 		currentPage: '',
+		// 当前聊天室
+		currentChatRoom:{
+			roomId:1,
+			roomName:''
+		},
 
 		// 界面显示管理
 		contentShow: {
@@ -12,10 +17,14 @@ var GameUI = new Vue({
 			'psw': false,
 			'call': false,
 			'image': false,
+			'imageList': false,
+			'imageListDetail':false,
 			'mail': false,
 			'mailDetail': false
 		},
 
+		// 聊天室列表
+		chatRoomList: [],
 		// 聊天列表
 		chatList: [],
 
@@ -65,16 +74,25 @@ var GameUI = new Vue({
 					self.showPage('desktop');
 					break;
 				case 'openMsg':
+					self.chatRoomList = helper.getChatRoomListData();
+
 					self.showPage('msg');
 					break;
 				case 'openContacts':
-					//todo: 还可以做消红点之类的操作
-					self.showPage('msgDetail');
+					var roomId = arguments[1];
+					self.currentChatRoom = helper.getChatRoomData(roomId);
 
-					if (!window._gameRuntime.isStartChat) {
-						window._gameRuntime.isStartChat = true;
-						main.startChat();
-					}
+					// if (!window._gameRuntime.isStartChat) {
+					// 	window._gameRuntime.isStartChat = true;
+					// 	main.startChat();
+					// }
+
+					//清空一下聊天dom
+					self.chatList = [];
+
+					main.startChat();
+
+					self.showPage('msgDetail');
 					break;
 				case 'unlock':
 					self.showPage('psw');
@@ -84,6 +102,12 @@ var GameUI = new Vue({
 					break;
 				case 'openImage':
 					self.showPage('image');
+					break;
+				case 'openImageList':
+					self.showPage('imageList');
+					break;
+				case 'openImageListDetail':
+					self.showPage('imageListDetail');
 					break;
 				case 'openMail':
 					self.showPage('mail');
@@ -145,11 +169,15 @@ var main = {
 	},
 	nextChat: function (id) {
 		if (!id) {
-			console.log('无效id，流程中止 id:', id)
+			console.log('无效id，流程中止 id:', id);
 			return;
 		}
 
-		var data = helper.getChatData(id);
+		var data = helper.getChatData(GameUI.$data.currentChatRoom.roomId,id);
+		if(!data){
+			console.log(id+'聊天数据为空');
+			return;
+		}
 
 		if (data.chatType == 1) {
 			var _chat = helper.chatDataFormate(data);
@@ -184,20 +212,47 @@ var main = {
  * 辅助函数
  */
 var helper = {
-	getChatData: function (msgId) {
-		return window._config.chatMsgMap[msgId];
+	//获取单条聊天数据
+	getChatData: function (roomId,msgId) {
+		return window._config.chatRoomMap[roomId].chatMsgMap[msgId];
 	},
+	//聊天数据填充格式化
 	chatDataFormate: function (data) {
 		var _actorInfo = helper.getActor(data.actorId);
 		data = Object.assign({}, data, _actorInfo);
 		return data;
 	},
+	//回答数据填充格式化
 	chatAnswerFormate: function (data) {
 		return data;
 	},
-
+	//获取角色具体信息
 	getActor: function (actorId) {
 		return window._config.actorMap[actorId];
+	},
+	//获取聊天室列表信息
+	getChatRoomListData: function(){
+		var roomList = [];
+		var _Map = window._config.chatRoomMap;
+		for(var roomId in _Map){
+			roomList.push({
+				roomId:roomId,
+				roomName:_Map[roomId].roomName,
+				roomImg:_Map[roomId].roomImg
+			})
+		}
+
+		return roomList;
+	},
+	//获取某个聊天室信息
+	getChatRoomData: function(roomId){
+		var _Map = window._config.chatRoomMap[roomId];
+
+		return {
+			roomId:roomId,
+			roomName:_Map.roomName,
+			roomImg:_Map.roomImg
+		}
 	}
 };
 

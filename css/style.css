@@ -93,6 +93,15 @@
 	border-radius: 5px;
 	margin: 0 auto;
 }
+
+.phone-desktop .ui-footer .app-icon{
+	position: relative;
+}
+.phone-desktop .ui-footer .ui-reddot{
+	position: absolute;
+	top:0px;
+	right: 0px;
+}
 .phone-desktop .ui-footer{
 	height: 80px;
 	padding-top: 20px;
@@ -115,19 +124,15 @@
 }
 
 /*消息对话*/
-.phone-msg-title{
-	font-size: 16px;
-	font-family: 微软雅黑;
-	width: 373px;
-	height: 45px;
-	line-height: 45px;
-	text-align: center;
-	background: #ececec;
-	border: 1px solid #000000;
-	margin: 0 auto;
+.phone-msg-detail .phone-title{
+	position: fixed;
+	z-index: 999;
 }
 .phone-msg-detail{
-	border-bottom: 80px solid transparent;
+	border-bottom: 100px solid transparent;
+}
+.phone-msg-detail .chat-list{
+	border-top: 45px solid transparent;
 }
 .phone-msg-detail .left-msg .ui-list-info{
 	text-align: left;
