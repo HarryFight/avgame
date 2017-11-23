@@ -3,11 +3,6 @@ var GameUI = new Vue({
 	data: {
 		// 全局控制参数
 		currentPage: '',
-		// 当前聊天室
-		currentChatRoom:{
-			roomId:1,
-			roomName:''
-		},
 
 		// 界面显示管理
 		contentShow: {
@@ -27,24 +22,21 @@ var GameUI = new Vue({
 		chatRoomList: [],
 		// 聊天列表
 		chatList: [],
-
 		// 聊天回复
 		chatAnswerShow: false,
-		chatAnswer: []
+		chatAnswer: [],
+		// 当前聊天室
+		currentChatRoom:{
+			roomId:1,
+			roomName:''
+		},
+		// 当前进行到的对话
+		currentChatMsgId:1
 	},
 	mounted: function () {
 		var self = this;
 		//页面初始化，展示桌面
 		this.showPage('desktop');
-
-		// setTimeout(function() {
-		// 	self.showPage('msgDetail');
-		// 	if (!window._gameRuntime.isStartChat) {
-		// 		window._gameRuntime.isStartChat = true;
-		// 		main.startChat();
-		// 	}
-		// }, 500);
-
 	},
 	methods: {
 		/**
@@ -82,17 +74,46 @@ var GameUI = new Vue({
 					var roomId = arguments[1];
 					self.currentChatRoom = helper.getChatRoomData(roomId);
 
-					// if (!window._gameRuntime.isStartChat) {
-					// 	window._gameRuntime.isStartChat = true;
-					// 	main.startChat();
-					// }
+					window._gameRuntime.isChat = true;
+
+					if(window._gameRuntime.chatProgress[roomId]){
+
+						//当此聊天室有快照，渲染并load
+						var _chatProgress = window._gameRuntime.chatProgress[roomId];
+						self.chatList = _chatProgress.chatList;
+						self.currentChatMsgId = _chatProgress.chatMsgId;
+						main.startChat(self.currentChatMsgId);
+					}else{
+
+						main.startChat(1);
+					}
+
+					self.showPage('msgDetail');
+					break;
+				case 'closeContacts':
+					var nextAction = arguments[1];
+
+					window._gameRuntime.isChat = false;
+
+					var chatProgress = {
+						//dom渲染数据
+						chatList: [].concat(self.chatList),
+						//当前进行到的消息
+						chatMsgId: self.currentChatMsgId,
+						roomId: self.currentChatRoom.roomId
+					};
+
+					//保存当前对话的快照
+					window._gameRuntime.chatProgress[chatProgress.roomId] = chatProgress;
 
 					//清空一下聊天dom
 					self.chatList = [];
+					self.chatAnswer = [];
+					self.chatAnswerShow = false;
+					clearTimeout(window._gameRuntime.chatTimer);
 
-					main.startChat();
-
-					self.showPage('msgDetail');
+					//继续执行后续动作
+					self.onAction(nextAction);
 					break;
 				case 'unlock':
 					self.showPage('psw');
@@ -160,14 +181,16 @@ var GameUI = new Vue({
  * 主流程控制
  */
 var main = {
-	startChat: function () {
+	startChat: function (chatMsgId) {
 		console.log('聊天开始进行');
-
-		//默认先读取id为1的数据
-		main.nextChat(1);
-
+		main.nextChat(chatMsgId);
 	},
 	nextChat: function (id) {
+		if(!window._gameRuntime.isChat) return;
+
+		//跟踪当前进行到的对话
+		GameUI.$data.currentChatMsgId = id;
+
 		if (!id) {
 			console.log('无效id，流程中止 id:', id);
 			return;
@@ -187,7 +210,7 @@ var main = {
 			GameUI.pushMsg(_chat);
 
 			_chat.delay = _chat.delay || 0; //处理dely
-			setTimeout(function () {
+			window._gameRuntime.chatTimer = setTimeout(function () {
 				main.nextChat(_chat.next || 0);
 			}, _chat.delay);
 
@@ -202,7 +225,7 @@ var main = {
 	},
 	answerChat: function (answer) {
 		answer.delay = answer.delay || 0; //处理dely
-		setTimeout(function () {
+		window._gameRuntime.chatTimer = setTimeout(function () {
 			main.nextChat(answer.next || 0);
 		}, answer.delay);
 	}

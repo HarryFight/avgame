@@ -189,7 +189,7 @@
 			        <!--消息对话界面-->
 			        <div class="phone-content phone-msg-detail" v-show="contentShow.msgDetail">
 						<div class="phone-title">
-							<i class="ui-icon-return title-back" @click="onAction('openMsg')"></i>
+							<i class="ui-icon-return title-back" @click="onAction('closeContacts','openMsg')"></i>
 							<i>{{ currentChatRoom.roomName }}</i>
 						</div>
 
@@ -229,7 +229,7 @@
 	        </div>
 
 	        <div class="phone-home">
-		        <div class="home-btn" @click="onAction('toHome')"></div>
+		        <div class="home-btn" @click="onAction('closeContacts','toHome')"></div>
 	        </div>
         </div>
 

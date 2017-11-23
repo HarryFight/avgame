@@ -148,6 +148,14 @@ window._config = {
 
 //游戏进行时
 window._gameRuntime = {
-	isStartChat: false,
-	step:1 //游戏进行的进度
+
+	//游戏进行的进度
+	step:1,
+
+	//聊天室的进度
+	chatProgress:{},
+
+	chatTimer:null,
+
+	isChat:false
 };
