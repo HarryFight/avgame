@@ -21,6 +21,23 @@ window._config = {
 			head: ''
 		}
 	},
+	//邮件数据
+	mailMap:{
+		1:{
+			title:"这是什么玩意儿",
+			from:'harry',
+			to:'very',
+			time:'10月20日',
+			content:'巴拉巴拉巴拉巴拉来吧来吧拉不拉不拉了芭芭拉喇叭喇叭地方的舒服舒服'
+		},
+		2:{
+			title:"邮件2",
+			from:'我是谁',
+			to:'very',
+			time:'10月20日',
+			content:'巴拉巴拉巴拉巴拉来吧来吧拉不拉不拉了芭芭拉喇叭喇叭地方的舒服舒服'
+		}
+	},
 	//聊天室数据
 	chatRoomMap:{
 		1:{
@@ -144,18 +161,4 @@ window._config = {
 			}
 		}
 	}
-};
-
-//游戏进行时
-window._gameRuntime = {
-
-	//游戏进行的进度
-	step:1,
-
-	//聊天室的进度
-	chatProgress:{},
-
-	chatTimer:null,
-
-	isChat:false
 };

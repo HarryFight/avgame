@@ -74,8 +74,6 @@ var GameUI = new Vue({
 					var roomId = arguments[1];
 					self.currentChatRoom = helper.getChatRoomData(roomId);
 
-					window._gameRuntime.isChat = true;
-
 					if(window._gameRuntime.chatProgress[roomId]){
 
 						//当此聊天室有快照，渲染并load
@@ -93,8 +91,6 @@ var GameUI = new Vue({
 				case 'closeContacts':
 					var nextAction = arguments[1];
 
-					window._gameRuntime.isChat = false;
-
 					var chatProgress = {
 						//dom渲染数据
 						chatList: [].concat(self.chatList),
@@ -110,6 +106,7 @@ var GameUI = new Vue({
 					self.chatList = [];
 					self.chatAnswer = [];
 					self.chatAnswerShow = false;
+					console.log('清除当前timmer',window._gameRuntime.chatTimer)
 					clearTimeout(window._gameRuntime.chatTimer);
 
 					//继续执行后续动作
@@ -186,10 +183,6 @@ var main = {
 		main.nextChat(chatMsgId);
 	},
 	nextChat: function (id) {
-		if(!window._gameRuntime.isChat) return;
-
-		//跟踪当前进行到的对话
-		GameUI.$data.currentChatMsgId = id;
 
 		if (!id) {
 			console.log('无效id，流程中止 id:', id);
@@ -210,6 +203,9 @@ var main = {
 			GameUI.pushMsg(_chat);
 
 			_chat.delay = _chat.delay || 0; //处理dely
+
+			//跟踪当前进行到的对话
+			GameUI.$data.currentChatMsgId = _chat.next;
 			window._gameRuntime.chatTimer = setTimeout(function () {
 				main.nextChat(_chat.next || 0);
 			}, _chat.delay);
@@ -218,6 +214,8 @@ var main = {
 			var _answer = helper.chatAnswerFormate(data);
 			console.log(id, _answer);
 
+			//跟踪当前进行到的对话
+			GameUI.$data.currentChatMsgId = id;
 			GameUI.answerMsg(_answer.msgOption);
 		} else {
 			console.log(id, '无效chatType类型')
@@ -279,3 +277,16 @@ var helper = {
 	}
 };
 
+
+
+//游戏进行时
+window._gameRuntime = {
+
+	//游戏进行的进度
+	step:1,
+
+	//聊天室的进度
+	chatProgress:{},
+
+	chatTimer:null
+};
