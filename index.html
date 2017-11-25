@@ -188,23 +188,31 @@
 				        <ul class="ui-list chat-list">
 					        <li v-for="line in chatList"
 					            :class="{'left-msg': line.isFriend ,'right-msg':!line.isFriend}"
-					            class="ui-border-t left-msg chat-line">
+					            class="ui-border-t chat-line">
+
 						        <template v-if="line.isFriend">
 							        <div class="ui-avatar-s">
-								        <span>{{ line.name }}</span>
+								        <img :src="line.head">
 							        </div>
 							        <div class="ui-list-info">
-								        <p>{{ line.msg }}</p>
+								        <i>{{ line.name }}</i>
+
+								        <p v-if="line.isImgMsg"><img :src="line.msg"></p>
+								        <p v-else>{{ line.msg }}</p>
 							        </div>
 						        </template>
 						        <template v-else>
 							        <div class="ui-list-info">
-								        <p>{{ line.msg }}</p>
+								        <i>{{ line.name }}</i>
+
+								        <p v-if="line.isImgMsg"><img :src="line.msg"></p>
+								        <p v-else>{{ line.msg }}</p>
 							        </div>
 							        <div class="ui-avatar-s">
-								        <span>{{ line.name }}</span>
+								        <img :src="line.head">
 							        </div>
 						        </template>
+
 					        </li>
 				        </ul>
 

@@ -134,6 +134,21 @@
 .phone-msg-detail .chat-list{
 	border-top: 45px solid transparent;
 }
+.phone-msg-detail .chat-list .ui-avatar-s img{
+	width: 40px;
+	height: 40px;
+}
+.phone-msg-detail .chat-list .ui-avatar-s i{
+	color: black;
+	position: absolute;
+	top: 30px;
+	left: 6px;
+}
+/*这个是调整聊天内默认图片大小的*/
+.phone-msg-detail .ui-list-info img{
+	max-height: 100px;
+	max-width: 300px;
+}
 .phone-msg-detail .left-msg .ui-list-info{
 	text-align: left;
 }

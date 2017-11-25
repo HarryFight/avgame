@@ -13,7 +13,7 @@ var GameUI = new Vue({
 			'call': false,
 			'image': false,
 			'imageList': false,
-			'imageListDetail':false,
+			'imageListDetail': false,
 			'mail': false,
 			'mailDetail': false
 		},
@@ -26,19 +26,19 @@ var GameUI = new Vue({
 		chatAnswerShow: false,
 		chatAnswer: [],
 		// 当前聊天室
-		currentChatRoom:{
-			roomId:1,
-			roomName:''
+		currentChatRoom: {
+			roomId: 1,
+			roomName: ''
 		},
 		// 当前进行到的对话
-		currentChatMsgId:1,
+		currentChatMsgId: 1,
 
 
 		// 邮件列表
 		mailList: [],
-		mailDetail:{},
+		mailDetail: {},
 	},
-	mounted: function () {
+	mounted: function() {
 		var self = this;
 		//页面初始化，展示桌面
 		this.showPage('desktop');
@@ -48,7 +48,7 @@ var GameUI = new Vue({
 		 * 展示对应页面
 		 * @param page
 		 */
-		showPage: function (page) {
+		showPage: function(page) {
 			var self = this;
 			self.currentPage = page;
 
@@ -63,7 +63,7 @@ var GameUI = new Vue({
 		 * 动作处理
 		 * @param action
 		 */
-		onAction: function (action) {
+		onAction: function(action) {
 			var self = this;
 
 			switch (action) {
@@ -79,14 +79,14 @@ var GameUI = new Vue({
 					var roomId = arguments[1];
 					self.currentChatRoom = helper.getChatRoomData(roomId);
 
-					if(window._gameRuntime.chatProgress[roomId]){
+					if (window._gameRuntime.chatProgress[roomId]) {
 
 						//当此聊天室有快照，渲染并load
 						var _chatProgress = window._gameRuntime.chatProgress[roomId];
 						self.chatList = _chatProgress.chatList;
 						self.currentChatMsgId = _chatProgress.chatMsgId;
 						main.startChat(self.currentChatMsgId);
-					}else{
+					} else {
 
 						main.startChat(1);
 					}
@@ -149,7 +149,7 @@ var GameUI = new Vue({
 		 * 选择回复
 		 * @param answer
 		 */
-		onSelectAnswer: function (answer) {
+		onSelectAnswer: function(answer) {
 			var actorInfo = helper.getActor(window._config.mainActorId);
 			var newMsg = Object.assign({
 				isFriend: false
@@ -166,10 +166,10 @@ var GameUI = new Vue({
 		 * 聊天框加载消息
 		 * @param msg
 		 */
-		pushMsg: function (msg) {
+		pushMsg: function(msg) {
 			this.chatList.push(msg);
 
-			this.$nextTick(function () {
+			this.$nextTick(function() {
 				$(window).scrollTop(9999);
 			})
 		},
@@ -177,7 +177,7 @@ var GameUI = new Vue({
 		/**
 		 * 聊天框选项加载
 		 */
-		answerMsg: function (chatAnswer) {
+		answerMsg: function(chatAnswer) {
 			this.chatAnswer = chatAnswer;
 			this.chatAnswerShow = true;
 		}
@@ -188,20 +188,20 @@ var GameUI = new Vue({
  * 主流程控制
  */
 var main = {
-	startChat: function (chatMsgId) {
+	startChat: function(chatMsgId) {
 		console.log('聊天开始进行');
 		main.nextChat(chatMsgId);
 	},
-	nextChat: function (id) {
+	nextChat: function(id) {
 
 		if (!id) {
 			console.log('无效id，流程中止 id:', id);
 			return;
 		}
 
-		var data = helper.getChatData(GameUI.$data.currentChatRoom.roomId,id);
-		if(!data){
-			console.log(id+'聊天数据为空');
+		var data = helper.getChatData(GameUI.$data.currentChatRoom.roomId, id);
+		if (!data) {
+			console.log(id + '聊天数据为空');
 			return;
 		}
 
@@ -216,7 +216,7 @@ var main = {
 
 			//跟踪当前进行到的对话
 			GameUI.$data.currentChatMsgId = _chat.next;
-			window._gameRuntime.chatTimer = setTimeout(function () {
+			window._gameRuntime.chatTimer = setTimeout(function() {
 				main.nextChat(_chat.next || 0);
 			}, _chat.delay);
 
@@ -231,9 +231,9 @@ var main = {
 			console.log(id, '无效chatType类型')
 		}
 	},
-	answerChat: function (answer) {
+	answerChat: function(answer) {
 		answer.delay = answer.delay || 0; //处理dely
-		window._gameRuntime.chatTimer = setTimeout(function () {
+		window._gameRuntime.chatTimer = setTimeout(function() {
 			main.nextChat(answer.next || 0);
 		}, answer.delay);
 	}
@@ -244,63 +244,63 @@ var main = {
  */
 var helper = {
 	//获取单条聊天数据
-	getChatData: function (roomId,msgId) {
+	getChatData: function(roomId, msgId) {
 		return window._config.chatRoomMap[roomId].chatMsgMap[msgId];
 	},
 	//聊天数据填充格式化
-	chatDataFormate: function (data) {
+	chatDataFormate: function(data) {
 		var _actorInfo = helper.getActor(data.actorId);
 		data = Object.assign({}, data, _actorInfo);
 		return data;
 	},
 	//回答数据填充格式化
-	chatAnswerFormate: function (data) {
+	chatAnswerFormate: function(data) {
 		return data;
 	},
 	//获取角色具体信息
-	getActor: function (actorId) {
+	getActor: function(actorId) {
 		return window._config.actorMap[actorId];
 	},
 	//获取聊天室列表信息
-	getChatRoomListData: function(){
+	getChatRoomListData: function() {
 		var roomList = [];
 		var _Map = window._config.chatRoomMap;
-		for(var roomId in _Map){
+		for (var roomId in _Map) {
 			roomList.push({
-				roomId:roomId,
-				roomName:_Map[roomId].roomName,
-				roomImg:_Map[roomId].roomImg
+				roomId: roomId,
+				roomName: _Map[roomId].roomName,
+				roomImg: _Map[roomId].roomImg
 			})
 		}
 
 		return roomList;
 	},
 	//获取某个聊天室信息
-	getChatRoomData: function(roomId){
+	getChatRoomData: function(roomId) {
 		var _Map = window._config.chatRoomMap[roomId];
 
 		return {
-			roomId:roomId,
-			roomName:_Map.roomName,
-			roomImg:_Map.roomImg
+			roomId: roomId,
+			roomName: _Map.roomName,
+			roomImg: _Map.roomImg
 		}
 	},
 
 	//获取邮件列表信息
-	getMailListData :function(){
+	getMailListData: function() {
 		var mailList = [];
 		var _Map = window._config.mailMap;
-		for(var mailId in _Map){
+		for (var mailId in _Map) {
 
 			mailList.push(Object.assign({
-				mailId:mailId
-			},_Map[mailId]));
+				mailId: mailId
+			}, _Map[mailId]));
 		}
 
 		return mailList;
 	},
 	//获取某个邮件信息
-	getMailDetailData: function(mailId){
+	getMailDetailData: function(mailId) {
 		var _Map = window._config.mailMap[mailId];
 
 		return _Map;
@@ -308,15 +308,14 @@ var helper = {
 };
 
 
-
 //游戏进行时
 window._gameRuntime = {
 
 	//游戏进行的进度
-	step:1,
+	step: 1,
 
 	//聊天室的进度
-	chatProgress:{},
+	chatProgress: {},
 
-	chatTimer:null
+	chatTimer: null
 };
