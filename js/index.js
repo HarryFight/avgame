@@ -31,7 +31,12 @@ var GameUI = new Vue({
 			roomName:''
 		},
 		// 当前进行到的对话
-		currentChatMsgId:1
+		currentChatMsgId:1,
+
+
+		// 邮件列表
+		mailList: [],
+		mailDetail:{},
 	},
 	mounted: function () {
 		var self = this;
@@ -106,7 +111,6 @@ var GameUI = new Vue({
 					self.chatList = [];
 					self.chatAnswer = [];
 					self.chatAnswerShow = false;
-					console.log('清除当前timmer',window._gameRuntime.chatTimer)
 					clearTimeout(window._gameRuntime.chatTimer);
 
 					//继续执行后续动作
@@ -128,10 +132,16 @@ var GameUI = new Vue({
 					self.showPage('imageListDetail');
 					break;
 				case 'openMail':
+					self.mailList = helper.getMailListData();
+
 					self.showPage('mail');
 					break;
 				case 'openMailDetail':
+					var mailId = arguments[1];
+					self.mailDetail = helper.getMailDetailData(mailId);
+
 					self.showPage('mailDetail');
+					break;
 			}
 		},
 
@@ -274,6 +284,26 @@ var helper = {
 			roomName:_Map.roomName,
 			roomImg:_Map.roomImg
 		}
+	},
+
+	//获取邮件列表信息
+	getMailListData :function(){
+		var mailList = [];
+		var _Map = window._config.mailMap;
+		for(var mailId in _Map){
+
+			mailList.push(Object.assign({
+				mailId:mailId
+			},_Map[mailId]));
+		}
+
+		return mailList;
+	},
+	//获取某个邮件信息
+	getMailDetailData: function(mailId){
+		var _Map = window._config.mailMap[mailId];
+
+		return _Map;
 	}
 };
 

@@ -121,25 +121,17 @@
 							<i>收件箱</i>
 						</div>
 						<ul class="ui-list ui-border-tb phone-mail-list">
-							<li class="ui-border-t" @click="onAction('openMailDetail')">
+							<li class="ui-border-t"
+							    v-for="mail in mailList"
+							    @click="onAction('openMailDetail',mail.mailId)">
 								<div class="ui-avatar">
 									<i class="ui-reddot"></i>
 									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
 								</div>
 								<div class="ui-list-info">
-									<i>10月1日</i>
-									<h4 class="ui-nowrap">未知人士</h4>
-									<p class="ui-nowrap">救命！ 你能救救我么？</p>
-								</div>
-							</li>
-							<li class="ui-border-t">
-								<div class="ui-avatar">
-									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
-								</div>
-								<div class="ui-list-info">
-									<i>1分钟前</i>
-									<h4 class="ui-nowrap">腾讯科技</h4>
-									<p class="ui-nowrap">恭喜你，你中了我司1000股股票！</p>
+									<i>{{ mail.time }}</i>
+									<h4 class="ui-nowrap">{{ mail.title }}</h4>
+									<p class="ui-nowrap">{{ mail.content }}</p>
 								</div>
 							</li>
 						</ul>
@@ -153,15 +145,15 @@
 						</div>
 						<div class="mail">
 							<div class="mail-head">
-								<h3>【一封来自陌生人的信】</h3>
+								<h3>【 {{ mailDetail.title }} 】</h3>
 								<br>
-								<p>发件人: <span>未知人士</span></p>
-								<p>收件人: <span>harry</span></p>
-								<p>时间: <span>一分钟前</span></p>
+								<p>发件人: <span>{{ mailDetail.from }}</span></p>
+								<p>收件人: <span>{{ mailDetail.to }}</span></p>
+								<p>时间: <span>{{ mailDetail.time }}</span></p>
 							</div>
 							<hr>
 							<div class="mail-content">
-								救命！ 你能救救我么？
+								{{ mailDetail.content }}
 							</div>
 						</div>
 					</div>
