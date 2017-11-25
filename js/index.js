@@ -85,6 +85,8 @@ var GameUI = new Vue({
 						var _chatProgress = window._gameRuntime.chatProgress[roomId];
 						self.chatList = _chatProgress.chatList;
 						self.currentChatMsgId = _chatProgress.chatMsgId;
+
+						$(window).scrollTop(9999999);
 						main.startChat(self.currentChatMsgId);
 					} else {
 
@@ -170,7 +172,7 @@ var GameUI = new Vue({
 			this.chatList.push(msg);
 
 			this.$nextTick(function() {
-				$(window).scrollTop(9999);
+				$(window).scrollTop(9999999);
 			})
 		},
 
