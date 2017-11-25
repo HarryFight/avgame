@@ -152,9 +152,7 @@
 								<p>时间: <span>{{ mailDetail.time }}</span></p>
 							</div>
 							<hr>
-							<div class="mail-content">
-								{{ mailDetail.content }}
-							</div>
+							<div class="mail-content" v-html="mailDetail.content"></div>
 						</div>
 					</div>
 
@@ -198,7 +196,7 @@
 								        <i>{{ line.name }}</i>
 
 								        <p v-if="line.isImgMsg"><img :src="line.msg"></p>
-								        <p v-else>{{ line.msg }}</p>
+								        <p v-html="line.msg" v-else></p>
 							        </div>
 						        </template>
 						        <template v-else>
@@ -206,7 +204,7 @@
 								        <i>{{ line.name }}</i>
 
 								        <p v-if="line.isImgMsg"><img :src="line.msg"></p>
-								        <p v-else>{{ line.msg }}</p>
+								        <p v-html="line.msg" v-else></p>
 							        </div>
 							        <div class="ui-avatar-s">
 								        <img :src="line.head">

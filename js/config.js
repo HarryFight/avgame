@@ -57,7 +57,7 @@ window._config = {
 				2: {
 					chatType: 1,
 					actorId: 1,
-					msg: '宝宝你是猪么，我在的',
+					msg: '宝宝</br>你是猪么，我在的',
 					isFriend: false,
 					next: 3,
 					delay: 1000
