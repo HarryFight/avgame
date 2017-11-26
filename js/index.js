@@ -61,10 +61,10 @@ var GameUI = new Vue({
 		//页面初始化，展示桌面
 		this.showPage('desktop');
 
-		// setTimeout(function(){
-		// 	helper.playMusicInit();
-		// 	helper.playMusic('bg');//启动背景音频
-		// },1000);
+		setTimeout(function(){
+			helper.playMusicInit();
+			helper.playMusic('bg');//启动背景音频
+		},500);
 	},
 	methods: {
 		/**
