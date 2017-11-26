@@ -94,7 +94,7 @@
 	margin: 0 auto;
 }
 
-.phone-desktop .ui-footer .app-icon{
+.phone-desktop .ui-footer .app-icon-footer{
 	position: relative;
 }
 .phone-desktop .ui-footer .ui-reddot{
@@ -111,6 +111,14 @@
 /*输入密码界面*/
 .phone-psw div img{
 	width: 100%;
+}
+#pswText{
+	position: absolute;
+	z-index: 999;
+	width: 200px;
+	height: 50px;
+	top: 205px;
+	left: 80px;
 }
 
 /*电话界面*/

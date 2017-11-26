@@ -29,35 +29,42 @@
 			        <!--桌面容器-->
 			        <div class="phone-content phone-desktop" v-show="contentShow.desktop">
 				        <ul class="app-icon-list">
-					        <li><div class="app-icon"></div><p>xxx</p></li>
-					        <li><div class="app-icon"></div><p>xxx</p></li>
-					        <li><div class="app-icon"></div><p>xxx</p></li>
-					        <li><div class="app-icon"></div><p>xxx</p></li>
+					        <!--桌面图标如下配置-->
+					        <li><img class="app-icon" src="img/head/changfeng.png"><p>xxx</p></li>
+					        <li><img class="app-icon"><p>xxx</p></li>
+					        <li><img class="app-icon"><p>xxx</p></li>
+					        <li><img class="app-icon"><p>xxx</p></li>
 					        <li @click="onAction('openMail')">
 								<i class="ui-reddot"></i>
-								<div class="app-icon"></div>
+								<img class="app-icon">
 								<p>邮件</p>
 							</li>
 					        <li @click="onAction('unlock')">
 								<i class="ui-reddot"></i>
-								<div class="app-icon"></div>
+								<img class="app-icon">
 								<p>不可思议</p>
 							</li>
 				        </ul>
 
 				        <div class="ui-footer ui-footer-stable ui-border-t" v-show="contentShow.desktop">
 					        <ul class="ui-tiled">
+						        <!--桌面图标如下配置-->
 						        <li>
-							        <div class="app-icon" @click="onAction('openCall')">电话</div>
+							        <div class="app-icon-footer">
+								        <img class="app-icon" src="img/head/changfeng.png" @click="onAction('openCall')">
+								        <i class="ui-reddot"></i>
+							        </div>
 						        </li>
 						        <li @click="onAction('openMsg')">
-							        <div class="app-icon">
+							        <div class="app-icon-footer">
+								        <img class="app-icon">
 								        <i class="ui-reddot"></i>
-								        <i class="ui-icon-personal"></i>
 							        </div>
 						        </li>
 						        <li>
-							        <div class="app-icon" @click="onAction('openImage')"><i class="ui-icon-thumb"></i></div>
+							        <div>
+								        <img class="app-icon" @click="onAction('openImage')">
+							        </div>
 						        </li>
 					        </ul>
 				        </div>
@@ -66,7 +73,8 @@
 					<!--输入密码界面-->
 					<div class="phone-content phone-psw" v-show="contentShow.psw">
 						<div>
-							<img src="img/psw.png" @click="onAction('toHome')">
+							<input type="password" id="pswText">
+							<img src="img/psw.png" @click="onAction('checkPsw')">
 						</div>
 					</div>
 
@@ -167,7 +175,7 @@
 							    v-for="room in chatRoomList"
 								@click="onAction('openContacts',room.roomId)">
 								<div class="ui-list-thumb">
-									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+									<span :style="{backgroundImage: 'url(' + room.roomImg + ')'}"></span>
 								</div>
 								<div class="ui-list-info">
 									<h4 class="ui-nowrap">{{ room.roomName }}</h4>

@@ -1,3 +1,21 @@
+//游戏进行时
+window._gameRuntime = {
+
+	//游戏进行的进度
+	step: 1,
+
+	//聊天室的进度
+	chatProgress: {},
+
+	chatTimer: null,
+
+	//音乐控制对象
+	music:{
+		bg:null,
+		chatRoom:null
+	}
+};
+
 var GameUI = new Vue({
 	el: '#app',
 	data: {
@@ -42,6 +60,11 @@ var GameUI = new Vue({
 		var self = this;
 		//页面初始化，展示桌面
 		this.showPage('desktop');
+
+		setTimeout(function(){
+			helper.playMusicInit();
+			helper.playMusic('bg');//启动背景音频
+		},500);
 	},
 	methods: {
 		/**
@@ -93,6 +116,8 @@ var GameUI = new Vue({
 						main.startChat(1);
 					}
 
+					//启动聊天的背景音乐
+					helper.playMusic('chatRoom');
 					self.showPage('msgDetail');
 					break;
 				case 'closeContacts':
@@ -116,10 +141,23 @@ var GameUI = new Vue({
 					clearTimeout(window._gameRuntime.chatTimer);
 
 					//继续执行后续动作
+					helper.playMusic('bg');
 					self.onAction(nextAction);
 					break;
 				case 'unlock':
 					self.showPage('psw');
+					break;
+				case 'checkPsw':
+					var psw = $('#pswText').val();
+
+					if(psw == window._config.password){
+						self.onAction('toHome')
+					}else{
+						alert('密码错误，请重试')
+					}
+
+					//清空输入框
+					$('#pswText').val('');
 					break;
 				case 'openCall':
 					self.showPage('call');
@@ -306,18 +344,26 @@ var helper = {
 		var _Map = window._config.mailMap[mailId];
 
 		return _Map;
+	},
+
+	playMusicInit:function(){
+		//背景音乐对象
+		window._gameRuntime.music.bg = new Audio(window._config.music.bg);
+		window._gameRuntime.music.chatRoom = new Audio(window._config.music.chatRoom);
+		window._gameRuntime.music.bg.addEventListener("ended",function() {
+			window._gameRuntime.music.bg.play();//启动音频
+		});
+		window._gameRuntime.music.chatRoom.addEventListener("ended",function() {
+			window._gameRuntime.music.chatRoom.play();//启动音频
+		});
+	},
+	playMusic:function(scene) {
+		var musicObj = window._gameRuntime.music;
+		for( var key in musicObj){
+			musicObj[key].pause();
+		}
+
+		musicObj[scene].currentTime = 0;
+		musicObj[scene].play();
 	}
-};
-
-
-//游戏进行时
-window._gameRuntime = {
-
-	//游戏进行的进度
-	step: 1,
-
-	//聊天室的进度
-	chatProgress: {},
-
-	chatTimer: null
 };
