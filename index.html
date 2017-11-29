@@ -18,7 +18,7 @@
         <div id="app" v-cloak>
 
 	        <!--手机屏幕显示范围-->
-	        <div class="phone-screen">
+	        <div class="phone-screen" >
 		        <!--手机头部状态栏-->
 		        <div class="phone-top-bar">11:45PM</div>
 
@@ -30,18 +30,18 @@
 			        <div class="phone-content phone-desktop" v-show="contentShow.desktop">
 				        <ul class="app-icon-list">
 					        <!--桌面图标如下配置-->
-					        <li><img class="app-icon" src="img/head/changfeng.png"><p>xxx</p></li>
-					        <li><img class="app-icon"><p>xxx</p></li>
-					        <li><img class="app-icon"><p>xxx</p></li>
-					        <li><img class="app-icon"><p>xxx</p></li>
+					        <li><img class="app-icon" src="img/icon/QQ.png"><p>QQ</p></li>
+					        <li><img class="app-icon" src="img/icon/QQshipin.png"><p>腾讯视频</p></li>
+					        <li><img class="app-icon" src="img/icon/QQmusic.png"><p>QQ音乐</p></li>
+					        <li><img class="app-icon" src="img/icon/weibo.png"><p>微博</p></li>
 					        <li @click="onAction('openMail')">
 								<i class="ui-reddot"></i>
-								<img class="app-icon">
+								<img class="app-icon" src="img/icon/youjian.png">
 								<p>邮件</p>
 							</li>
 					        <li @click="onAction('unlock')">
 								<i class="ui-reddot"></i>
-								<img class="app-icon">
+								<img class="app-icon" src="img/icon/bukesiyi.png">
 								<p>不可思议</p>
 							</li>
 				        </ul>
@@ -51,19 +51,19 @@
 						        <!--桌面图标如下配置-->
 						        <li>
 							        <div class="app-icon-footer">
-								        <img class="app-icon" src="img/head/changfeng.png" @click="onAction('openCall')">
+								        <img class="app-icon" src="img/icon/call.png" @click="onAction('openCall')">
 								        <i class="ui-reddot"></i>
 							        </div>
 						        </li>
 						        <li @click="onAction('openMsg')">
 							        <div class="app-icon-footer">
-								        <img class="app-icon">
+								        <img class="app-icon" src="img/icon/liaotian.png">
 								        <i class="ui-reddot"></i>
 							        </div>
 						        </li>
 						        <li>
 							        <div>
-								        <img class="app-icon" @click="onAction('openImage')">
+								        <img class="app-icon"  src="img/icon/xiangce.png"@click="onAction('openImage')">
 							        </div>
 						        </li>
 					        </ul>
@@ -134,7 +134,7 @@
 							    @click="onAction('openMailDetail',mail.mailId)">
 								<div class="ui-avatar">
 									<i class="ui-reddot"></i>
-									<span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+									<span style="background-image:url(img/mail-icon.png)"></span>
 								</div>
 								<div class="ui-list-info">
 									<i>{{ mail.time }}</i>
