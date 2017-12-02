@@ -187,14 +187,17 @@ html,body{
 	background: rgba(255,255,255,0.5);
 }
 .phone-msg-detail .chat-answer-option{
-	background: #f5f5f5;
+	background: rgba(153, 153, 255, 0.8);
 	margin: 5px;
 	cursor: pointer;
+	border: 1px solid #eae8e8;
+	border-radius: 6px;
 }
 .phone-msg-detail .chat-answer-option div{
 	padding: 10px;
-	border: 1px solid #eae8e8;
-	background: #e8f0fa;
+	color:white;
+	/*border: 1px solid #eae8e8;*/
+	/*background: #e8f0fa;*/
 }
 .phone-msg-detail .chat-answer-option:hover{
 	background: #ffffff;
