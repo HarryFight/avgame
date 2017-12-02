@@ -3,7 +3,10 @@ window._config = {
 	//主角id
 	mainActorId: 1,
 	//解锁密码
-	password:'218435',
+	loginPsw:'1145', //手机登录密码
+
+	nickName:'软糖',
+	password:'218435', //app密码
 	//背景音乐
 	music:{
 		bg:'source/bg.mp3',
@@ -1496,7 +1499,7 @@ window._config = {
 			actorId:7,
 			msg: '[韩师愈上线了]',
 			isFriend: true,
-			next: 200,
+			next: 210,
 			delay: 2000
 		},
 		210: {

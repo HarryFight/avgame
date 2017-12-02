@@ -25,6 +25,13 @@
 		        <!--手机内容容器，可以切换展示的部分-->
 		        <div class="ui-container ui-center phone-container">
 
+			        <!--登录密码-->
+			        <div class="phone-content phone-login" v-show="contentShow.login">
+				        <div>
+					        <input type="password" id="loginPsw">
+					        <img src="./img/psw.png" @click="onAction('checkLogin')">
+				        </div>
+			        </div>
 
 			        <!--桌面容器-->
 			        <div class="phone-content phone-desktop" v-show="contentShow.desktop">
@@ -35,11 +42,11 @@
 					        <li><img class="app-icon" src="img/icon/QQmusic.png"><p>QQ音乐</p></li>
 					        <li><img class="app-icon" src="img/icon/weibo.png"><p>微博</p></li>
 					        <li @click="onAction('openMail')">
-								<i class="ui-reddot"></i>
+								<i class="ui-reddot" v-if="UI.mail_icon_reddot"></i>
 								<img class="app-icon" src="img/icon/youjian.png">
 								<p>邮件</p>
 							</li>
-					        <li @click="onAction('unlock')">
+					        <li @click="onAction('openApp')" v-if="UI.app_icon">
 								<i class="ui-reddot"></i>
 								<img class="app-icon" src="img/icon/bukesiyi.png">
 								<p>不可思议</p>
@@ -52,13 +59,11 @@
 						        <li>
 							        <div class="app-icon-footer">
 								        <img class="app-icon" src="img/icon/call.png" @click="onAction('openCall')">
-								        <i class="ui-reddot"></i>
 							        </div>
 						        </li>
-						        <li @click="onAction('openMsg')">
+						        <li>
 							        <div class="app-icon-footer">
 								        <img class="app-icon" src="img/icon/liaotian.png">
-								        <i class="ui-reddot"></i>
 							        </div>
 						        </li>
 						        <li>
@@ -70,11 +75,12 @@
 				        </div>
 			        </div>
 
-					<!--输入密码界面-->
+					<!--输入APP密码界面-->
 					<div class="phone-content phone-psw" v-show="contentShow.psw">
 						<div>
+							<input type="text" id="nameText" value="软糖">
 							<input type="password" id="pswText">
-							<img src="img/psw.png" @click="onAction('checkPsw')">
+							<img src="css/bg2.jpg" @click="onAction('checkPsw')">
 						</div>
 					</div>
 
@@ -133,7 +139,7 @@
 							    v-for="mail in mailList"
 							    @click="onAction('openMailDetail',mail.mailId)">
 								<div class="ui-avatar">
-									<i class="ui-reddot"></i>
+									<i class="ui-reddot" v-if="mail.reddot"></i>
 									<span style="background-image:url(img/mail-icon.png)"></span>
 								</div>
 								<div class="ui-list-info">
@@ -186,12 +192,13 @@
 
 			        <!--消息对话界面-->
 			        <div class="phone-content phone-msg-detail" v-show="contentShow.msgDetail">
-						<div class="phone-title">
+
+				        <div class="phone-title">
 							<i class="ui-icon-return title-back" @click="onAction('closeContacts','openMsg')"></i>
 							<i>{{ currentChatRoom.roomName }}</i>
 						</div>
 
-				        <ul class="ui-list chat-list">
+				        <ul class="ui-list chat-list" id="msgList">
 					        <li v-for="line in chatList"
 					            :class="{'left-msg': line.isFriend ,'right-msg':!line.isFriend}"
 					            class="ui-border-t chat-line">
@@ -241,9 +248,11 @@
 
 
 		<script>
-	        if(document.body.clientWidth >1000){
-		        alert('请在手机端访问此demo，获得最佳效果')
-	        }
+			window.onresize = function(){
+				if(document.body.clientWidth >1000){
+					alert('请在采用移动端窗口大小，获得最佳效果')
+				}
+			}
 		</script>
         <script src="js/index.js"></script>
     </body>
