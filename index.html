@@ -10,7 +10,10 @@
 
 	    <link href="css/style.css" rel="stylesheet">
         <script src='lib/vue.js'></script>
-
+	    <script src="lib/minibus.js"></script>
+	    <script>
+		    window.bus = Minibus.create()
+	    </script>
 	    <script src="js/config.js"></script>
     </head>
     <body>
@@ -46,7 +49,7 @@
 								<img class="app-icon" src="img/icon/youjian.png">
 								<p>邮件</p>
 							</li>
-					        <li @click="onAction('openApp')" v-if="UI.app_icon">
+					        <li @click="onAction('openApp')" v-if="UI.app_icon_show">
 								<i class="ui-reddot"></i>
 								<img class="app-icon" src="img/icon/bukesiyi.png">
 								<p>不可思议</p>
@@ -80,7 +83,7 @@
 						<div>
 							<input type="text" id="nameText" value="软糖">
 							<input type="password" id="pswText">
-							<img src="css/bg2.jpg" @click="onAction('checkPsw')">
+							<img src="css/bg2.jpg" @click="onAction('checkAppPsw')">
 						</div>
 					</div>
 

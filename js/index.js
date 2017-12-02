@@ -1,38 +1,40 @@
 //游戏步骤定义
 var step = {
-	game_init: 1, //游戏初始化
-	phone_login_suc: 2,
-	see_mail_1: 3,
-	app_login_suc: 4,
+	game_init: 100, //游戏初始化
+	phone_login_suc: 200,
 
-	chat_room1_1_167_start: 5, //群聊1
-	chat_room1_1_167_end: 6,
+	mail_1_pushed: 210,
+	see_mail_1: 300,
+	app_login_suc: 400,
 
-	see_mail_2: 7,
+	chat_room1_1_167_start: 500, //群聊1
+	chat_room1_1_167_end: 600,
 
-	chat_room1_200_202_start: 8, //看完邮件后群聊1继续
-	chat_room1_200_202_end: 9,
+	see_mail_2: 700,
 
-	chat_room2_start: 10, //room2聊天开始
-	chat_room2_end: 11,
+	chat_room1_200_202_start: 800, //看完邮件后群聊1继续
+	chat_room1_200_202_end: 900,
 
-	chat_room1_203_209_start: 12, //群聊1继续
-	chat_room1_203_209_end: 13,
+	chat_room2_start: 1000, //room2聊天开始
+	chat_room2_end: 1100,
 
-	chat_room3_start: 14, //room3聊天开始
-	chat_room3_end: 15,
+	chat_room1_203_209_start: 1200, //群聊1继续
+	chat_room1_203_209_end: 1300,
 
-	chat_room1_8001_250_start: 16, //群聊1继续
-	chat_room1_8001_250_end: 17,
+	chat_room3_start: 1400, //room3聊天开始
+	chat_room3_end: 1500,
 
-	chat_room4_start: 18,
-	chat_room4_end: 19,
+	chat_room1_8001_250_start: 1600, //群聊1继续
+	chat_room1_8001_250_end: 1700,
 
-	chat_room5_start: 20,
-	chat_room5_end: 21,
+	chat_room4_start: 1800,
+	chat_room4_end: 1900,
 
-	chat_room6_start: 22,
-	chat_room6_end: 23,
+	chat_room5_start: 2000,
+	chat_room5_end: 2100,
+
+	chat_room6_start: 2200,
+	chat_room6_end: 2300,
 };
 //游戏进行时
 window._gameRuntime = {
@@ -94,7 +96,9 @@ var GameUI = new Vue({
 		mailDetail: {},
 
 		UI: {
-			app_icon: false,
+			isLogin:false,
+			isLoginApp:false,
+			app_icon_show: false,
 			mail_icon_reddot: false
 		}
 	},
@@ -107,6 +111,37 @@ var GameUI = new Vue({
 			helper.playMusicInit();
 			helper.playMusic('bg');//启动背景音频
 		}, 500);
+
+
+		/**
+		 * 事件绑定们
+		 */
+
+		bus.once('mail_1_pushed',function() {
+			var firstMail = helper.getMailDetailData(1); //展示id为1的第一封邮件
+			firstMail.reddot = true; //有红点
+			self.mailList.push(firstMail);
+
+			self.UI.mail_icon_reddot = true;
+			window._gameRuntime.step = step.mail_1_pushed;
+		});
+		bus.once('see_mail_1',function() {
+			self.mailList[0].reddot = false;
+			self.UI.mail_icon_reddot = false;
+
+			self.UI.app_icon_show = true;
+			window._gameRuntime.step = step.see_mail_1;
+		});
+
+		bus.once('mail_2_pushed',function() {
+			console.log('once')
+		});
+		bus.once('see_mail_2',function() {
+		});
+
+		/**
+		 *  end
+		 * */
 	},
 	methods: {
 		/**
@@ -139,8 +174,8 @@ var GameUI = new Vue({
 						self.onAction('toHome');
 
 						window._gameRuntime.step = step.phone_login_suc;
-						self.UI.mail_icon_reddot = true;
-
+						self.UI.isLogin = true;
+						bus.emit('mail_1_pushed');
 					} else {
 						alert('登录密码错误，请重试')
 					}
@@ -149,16 +184,16 @@ var GameUI = new Vue({
 					$('#pswText').val('');
 					break;
 				case 'toHome':
-					if(window._gameRuntime.step < step.phone_login_suc){
-						self.showPage('login');
-					}else{
+					if (self.UI.isLogin) {
 						self.showPage('desktop');
+					} else {
+						self.showPage('login');
 					}
 					break;
 				case 'openMsg':
-					// if(window._gameRuntime.step >= step.phone_login_suc && window._gameRuntime.step < step.chat_room1_1_167_end){
-					//
-					// }
+					if (window._gameRuntime.step >= step.phone_login_suc && window._gameRuntime.step < step.chat_room1_1_167_end) {
+
+					}
 					// self.chatRoomList = helper.getChatRoomListData();
 
 					self.showPage('msg');
@@ -210,13 +245,20 @@ var GameUI = new Vue({
 					self.onAction(nextAction);
 					break;
 				case 'openApp':
-					self.showPage('psw');
+					if (self.UI.isLoginApp) {
+						self.showPage('msg');
+					} else {
+						self.showPage('psw');
+					}
+
 					break;
-				case 'checkPsw':
+				case 'checkAppPsw': //这个是app的解锁
 					var psw = $('#pswText').val();
 
 					if (psw == window._config.password) {
-						self.onAction('openMsg')
+						window._gameRuntime.step = step.app_login_suc;
+						self.UI.isLoginApp = true;
+						self.onAction('openMsg');
 					} else {
 						alert('密码错误，请重试')
 					}
@@ -237,29 +279,15 @@ var GameUI = new Vue({
 					self.showPage('imageListDetail');
 					break;
 				case 'openMail':
-					if(window._gameRuntime.step == step.phone_login_suc){
-						var firstMail = helper.getMailDetailData(1); //展示id为1的第一封邮件
-
-						firstMail.reddot = true; //有红点
-
-						self.mailList.push(firstMail);
-					}
-
 					self.showPage('mail');
 					break;
 				case 'openMailDetail':
 					var mailId = arguments[1];
-					if(window._gameRuntime.step == step.phone_login_suc && mailId == 1){
-						window._gameRuntime.step = step.see_mail_1;
-
-						self.mailList[0].reddot = false;
-						self.UI.mail_icon_reddot = false;
-
-						self.UI.app_icon = true;
+					if(mailId == 1){
+						bus.emit('see_mail_1',mailId)
+					}else if(mailId == 2){
+						bus.emit('see_mail_2',mailId)
 					}
-					// if(window._gameRuntime.step == step.phone_login_suc && mailId == '1'){
-					// 	window._gameRuntime.step = step.see_mail_1;
-					// }
 
 					self.mailDetail = helper.getMailDetailData(mailId);
 
