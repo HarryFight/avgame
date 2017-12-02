@@ -184,6 +184,7 @@
 							    v-for="room in chatRoomList"
 								@click="onAction('openContacts',room.roomId)">
 								<div class="ui-list-thumb">
+									<i class="ui-reddot" v-if="room.reddot"></i>
 									<span :style="{backgroundImage: 'url(' + room.roomImg + ')'}"></span>
 								</div>
 								<div class="ui-list-info">

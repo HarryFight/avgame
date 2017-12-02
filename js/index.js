@@ -1,12 +1,12 @@
 //游戏步骤定义
 var step = {
-	game_init: 100, //游戏初始化
 	phone_login_suc: 200,
 
 	mail_1_pushed: 210,
 	see_mail_1: 300,
 	app_login_suc: 400,
 
+	chat_room1_1_167_push: 490,
 	chat_room1_1_167_start: 500, //群聊1
 	chat_room1_1_167_end: 600,
 
@@ -132,6 +132,13 @@ var GameUI = new Vue({
 			self.UI.app_icon_show = true;
 			window._gameRuntime.step = step.see_mail_1;
 		});
+		bus.once('chat_room1_1_167_push',function(){
+			var firstChat = helper.getChatRoomData(1);
+			firstChat.reddot = true; //有红点
+			self.chatRoomList.push(firstChat);
+
+			window._gameRuntime.step = step.chat_room1_1_167_push;
+		});
 
 		bus.once('mail_2_pushed',function() {
 			console.log('once')
@@ -191,11 +198,6 @@ var GameUI = new Vue({
 					}
 					break;
 				case 'openMsg':
-					if (window._gameRuntime.step >= step.phone_login_suc && window._gameRuntime.step < step.chat_room1_1_167_end) {
-
-					}
-					// self.chatRoomList = helper.getChatRoomListData();
-
 					self.showPage('msg');
 					break;
 				case 'openContacts':
@@ -258,6 +260,8 @@ var GameUI = new Vue({
 					if (psw == window._config.password) {
 						window._gameRuntime.step = step.app_login_suc;
 						self.UI.isLoginApp = true;
+
+						bus.emit('chat_room1_1_167_push');
 						self.onAction('openMsg');
 					} else {
 						alert('密码错误，请重试')
