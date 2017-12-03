@@ -50,7 +50,7 @@ window._config = {
 			from: '未知用户',
 			to: '我',
 			time: '2022年10月22日 12:33',
-			content: '嗨，你好啊，亲爱的小姐。我叫龙天光。</br>虽然是个不情之请，但是，我想要将自己的生命托付给你，拜托你拯救我！</br>Ancient Aliens：https://tones.tencent.com/cn/app/id1281428574</br>邀请码：218435</br>可以请你和“他们”成为朋友吗？'
+			content: '嗨，你好啊，亲爱的小姐。我叫龙天光。</br>虽然是个不情之请，但是，我想要将自己的生命托付给你，拜托你拯救我！</br>下载“不可思议聊天软件”</br>帐号：软糖，密码：218435</br>可以请你和“他们”成为朋友吗？'
 		},
 		2: {
 			title: "请继续帮帮我！",
@@ -72,7 +72,7 @@ window._config = {
 		1: {
 			chatType: 1, //1-消息对话，2-回复选项
 			actorId:7,
-			msg: '【在线：长风，尚怡，修Hugh】',
+			msg: '【在线：长风，向怡，修Hugh】',
 			isFriend: true,
 			next: 88001,    //下一条消息
 			//next: 167,    //DEBUG用
@@ -98,7 +98,7 @@ window._config = {
 			chatType: 1,
 			actorId:6,
 			isImgMsg: true,
-			msg: 'img/emoji/cake.png',
+			msg: 'img/emoji/cake.jpg',
 			isFriend: true,
 			next: 3,
 			delay: 2000
@@ -172,7 +172,7 @@ window._config = {
 			chatType: 1,
 			actorId:6,
 			isImgMsg: true,
-			msg: 'img/emoji/pic1.png',
+			msg: 'img/emoji/pic1.jpg',
 			isFriend: true,
 			next: 12,
 			delay: 1500
@@ -684,7 +684,7 @@ window._config = {
 		74: {
 			chatType: 1, 
 			actorId:6,
-			msg: '也许韩大是觉着，尚怡一直想要让我们扩员来着。',
+			msg: '也许韩大是觉着，向怡一直想要让我们扩员来着。',
 			isFriend: true,
 			next: 75,
 			delay: 2000
@@ -732,7 +732,7 @@ window._config = {
 		82: {
 			chatType: 1, 
 			actorId:6,
-			msg: '的确！我、韩大和尹川都已经工作了。现在尚怡还是高中生，阿修是大学生。',
+			msg: '的确！我、韩大和尹川都已经工作了。现在向怡还是高中生，阿修是大学生。',
 			isFriend: true,
 			next: 83,
 			delay: 1500
@@ -787,8 +787,8 @@ window._config = {
 		},
 		89: {
 			chatType: 1, 
-			actorId:3,
-			msg: '发出一个转账邀请，金额一千万。',
+			actorId:7,
+			msg: '【尹川邀请你转账1000000元】',
 			isFriend: true,
 			next: 90,
 			delay: 3000
@@ -870,7 +870,7 @@ window._config = {
 			chatType: 1, 
 			actorId:3,
 			isImgMsg: true,
-			msg: 'img/emoji/jingdaile.gif',//{po一张惊呆了的表情包}
+			msg: 'img/emoji/jingdaile.jpg',//{po一张惊呆了的表情包}
 			isFriend: true,
 			next: 100,
 			delay: 3000
@@ -960,7 +960,7 @@ window._config = {
 			chatType: 1, 
 			actorId:3,
 			isImgMsg: true,
-			msg: 'img/emoji/deyi.gif',//{po一张得意的表情包}
+			msg: 'img/emoji/deyi.jpg',//{po一张得意的表情包}
 			isFriend: true,
 			next: 111,
 			delay: 2000
@@ -1080,7 +1080,7 @@ window._config = {
 		126: {
 			chatType: 1, 
 			actorId:5,
-			msg: '尚怡，是你吧？',
+			msg: '向怡，是你吧？',
 			isFriend: true,
 			next: 127,
 			delay: 2000
@@ -1216,7 +1216,7 @@ window._config = {
 		144: {
 			chatType: 1,  
 			actorId:6,
-			msg: '过奖了，尚怡做的饭菜也是很好吃的。',
+			msg: '过奖了，向怡做的饭菜也是很好吃的。',
 			isFriend: true,
 			next: 145,
 			delay: 2000
@@ -1232,7 +1232,8 @@ window._config = {
 		146: {
 			chatType: 1,  
 			actorId:3,
-			msg: '{一连发了好几张自己的直播图、明星图}',
+			isImgMsg: true,
+			msg: 'img/emoji/zen03.jpg',//{po一张帅气的图}
 			isFriend: true,
 			next: 147,
 			delay: 2000
@@ -1400,7 +1401,7 @@ window._config = {
 		167: {
 			chatType: 1,  
 			actorId:7,
-			msg: '[尚怡下线了]',
+			msg: '[向怡下线了]',
 			isFriend: true,
 			next: 200,
 			delay: 10000
@@ -1409,7 +1410,7 @@ window._config = {
 		200: {
 			chatType: 1, 
 			actorId:7,
-			msg: '【在线：长风，尚怡，修】',
+			msg: '【在线：长风，向怡，修】',
 			isFriend: true,
 			next: 201,    
 			delay: 1500    
@@ -1433,7 +1434,7 @@ window._config = {
 		203: {
 			chatType: 1, 
 			actorId:6,
-			msg: '早上好，尚怡^^，早餐有没有好好吃呀？',
+			msg: '早上好，向怡^^，早餐有没有好好吃呀？',
 			isFriend: true,
 			next: 204,    
 			delay: 2000    
@@ -1465,7 +1466,8 @@ window._config = {
 		207: {
 			chatType: 1, 
 			actorId:2,
-			msg: '{po一张自己做家务的图}',
+			isImgMsg: true,
+			msg: 'img/emoji/zaofan.jpeg',//{po一张惊呆了的表情包}
 			isFriend: true,
 			next: 208,    
 			delay: 2000    
@@ -1506,7 +1508,8 @@ window._config = {
 		210: {
 			chatType: 1, 
 			actorId:3,
-			msg: '{发一张自己的帅图}',
+			isImgMsg: true,
+			msg: 'img/emoji/zen04.jpg',//{po一张帅气的图}
 			isFriend: true,
 			next: 211,    
 			delay: 1500    
@@ -1562,7 +1565,7 @@ window._config = {
 		217: {
 			chatType: 1, 
 			actorId:3,
-			msg: '啊，难道说，我即将转生到尚怡的身上……',
+			msg: '啊，难道说，我即将转生到向怡的身上……',
 			isFriend: true,
 			next: 218,    
 			delay: 1500    
@@ -1578,7 +1581,8 @@ window._config = {
 		219: {
 			chatType: 1, 
 			actorId:2,
-			msg: '{掀桌表情}',
+			isImgMsg: true,
+			msg: 'img/emoji/xianzhuo.jpg',//{po一张掀桌}
 			isFriend: true,
 			next: 220,    
 			delay: 2000    
@@ -1586,7 +1590,8 @@ window._config = {
 		220: {
 			chatType: 1, 
 			actorId:3,
-			msg: '{帅气的自拍图}',
+			isImgMsg: true,
+			msg: 'img/emoji/zen06.jpg',//{po一张帅气的图}
 			isFriend: true,
 			next: 221,    
 			delay: 3000    
@@ -1714,7 +1719,8 @@ window._config = {
 		240: {
 			chatType: 1, 
 			actorId:3,
-			msg: '{演唱会的排练帅图}~',
+			isImgMsg: true,
+			msg: 'img/emoji/zen05.jpg',//{po一张演唱会帅气排练图}
 			isFriend: true,
 			next: 9012,    
 			delay: 2000    
@@ -2094,7 +2100,8 @@ window._config = {
 				19: {
 					chatType: 1,
 					actorId: 2,
-					msg: '{发一个开心的表情}',
+					isImgMsg: true,
+					msg: 'img/emoji/kaixin.gif',//{po一张开心的图}
 					isFriend: true,
 					next: 20,
 					delay: 2000

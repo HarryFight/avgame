@@ -275,7 +275,7 @@ var GameUI = new Vue({
 			self.chatStopCtrl['3'] = true;
 
 			setTimeout(function(){
-				bus.emit('chat_room4_push');
+				bus.emit('chat_room1_c4_push');
 			},1000)
 		});
 
