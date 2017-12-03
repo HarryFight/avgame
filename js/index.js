@@ -6,26 +6,26 @@ var step = {
 	see_mail_1: 300,
 	app_login_suc: 400,
 
-	chat_room1_1_167_push: 490,
-	chat_room1_1_167_start: 500, //群聊1
-	chat_room1_1_167_end: 600,
+	chat_room1_c1_push: 490,
+	chat_room1_c1_start: 500, //群聊1  1-167
+	chat_room1_c1_end: 600,
 
 	see_mail_2: 700,
 
-	chat_room1_200_202_start: 800, //看完邮件后群聊1继续
-	chat_room1_200_202_end: 900,
+	chat_room1_c2_start: 800, //看完邮件后群聊1继续   200-202
+	chat_room1_c2_end: 900,
 
 	chat_room2_start: 1000, //room2聊天开始
 	chat_room2_end: 1100,
 
-	chat_room1_203_209_start: 1200, //群聊1继续
-	chat_room1_203_209_end: 1300,
+	chat_room1_c3_start: 1200, //群聊1继续   203-209
+	chat_room1_c3_end: 1300,
 
 	chat_room3_start: 1400, //room3聊天开始
 	chat_room3_end: 1500,
 
-	chat_room1_8001_250_start: 1600, //群聊1继续
-	chat_room1_8001_250_end: 1700,
+	chat_room1_c4_start: 1600, //群聊1继续  8001-250
+	chat_room1_c4_end: 1700, 
 
 	chat_room4_start: 1800,
 	chat_room4_end: 1900,
@@ -132,12 +132,12 @@ var GameUI = new Vue({
 			self.UI.app_icon_show = true;
 			window._gameRuntime.step = step.see_mail_1;
 		});
-		bus.once('chat_room1_1_167_push',function(){
+		bus.once('chat_room1_c1_push',function(){
 			var firstChat = helper.getChatRoomData(1);
 			firstChat.reddot = true; //有红点
 			self.chatRoomList.push(firstChat);
 
-			window._gameRuntime.step = step.chat_room1_1_167_push;
+			window._gameRuntime.step = step.chat_room1_c1_push;
 		});
 
 		bus.once('mail_2_pushed',function() {
@@ -261,7 +261,7 @@ var GameUI = new Vue({
 						window._gameRuntime.step = step.app_login_suc;
 						self.UI.isLoginApp = true;
 
-						bus.emit('chat_room1_1_167_push');
+						bus.emit('chat_room1_c1_push');
 						self.onAction('openMsg');
 					} else {
 						alert('密码错误，请重试')
@@ -360,7 +360,7 @@ var main = {
 			return;
 		}
 
-		if (data.chatType == 1) {
+		if (data.chatType == 1) { //对话消息
 			var _chat = helper.chatDataFormate(data);
 			console.log(id, _chat);
 
@@ -368,23 +368,35 @@ var main = {
 			GameUI.pushMsg(_chat);
 
 			_chat.delay = _chat.delay || 0; //处理dely
-
-			//跟踪当前进行到的对话
+			
+			//当前对话指针移动到next
 			GameUI.$data.currentChatMsgId = _chat.next;
-			window._gameRuntime.chatTimer = setTimeout(function() {
-				main.nextChat(_chat.next || 0);
-			}, _chat.delay);
+			
+			//所有对话经此函数判断，是否对话停止
+			var _isStop = main.stopChatHandler();
+			if(!_isStop){
+				window._gameRuntime.chatTimer = setTimeout(function() {
+					main.nextChat(_chat.next || 0);
+				}, _chat.delay);
+			}
+			
 
-		} else if (data.chatType == 2) {
+		} else if (data.chatType == 2) { //回答消息
 			var _answer = helper.chatAnswerFormate(data);
 			console.log(id, _answer);
 
-			//跟踪当前进行到的对话
+			//当前对话指针移动到next
 			GameUI.$data.currentChatMsgId = id;
 			GameUI.answerMsg(_answer.msgOption);
 		} else {
 			console.log(id, '无效chatType类型')
 		}
+	},
+	stopChatHandler: function(roomId,chatId,callback){
+		
+	},
+	resumeChatHandler: function(roomId,chatId,callback){
+
 	},
 	answerChat: function(answer) {
 		answer.delay = answer.delay || 0; //处理dely
