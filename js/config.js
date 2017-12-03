@@ -74,8 +74,8 @@ window._config = {
 			actorId:7,
 			msg: '【在线：长风，尚怡，修Hugh】',
 			isFriend: true,
-			//next: 88001,    //下一条消息
-			next: 167,    //下一条消息
+			next: 88001,    //下一条消息
+			//next: 167,    //DEBUG用
 			delay: 1500    //下一步流程的延迟
 		},
 		88001: {

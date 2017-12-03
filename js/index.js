@@ -1,3 +1,5 @@
+const DEBUG = false;
+
 //游戏步骤定义
 var step = {
 	phone_login_suc: 200,
@@ -25,7 +27,7 @@ var step = {
 	chat_room3_end: 1500,
 
 	chat_room1_c4_push: 1600, //群聊1继续  8001-250
-	chat_room1_c4_end: 1700, 
+	chat_room1_c4_end: 1700,
 
 	chat_room4_push: 1800,
 	chat_room4_end: 1900,
@@ -400,7 +402,7 @@ var GameUI = new Vue({
 				case 'checkLogin':
 					var psw = $('#loginPsw').val();
 
-					if (psw == window._config.loginPsw) {
+					if (DEBUG || psw == window._config.loginPsw) {
 						self.onAction('toHome');
 
 						window._gameRuntime.step = step.phone_login_suc;
@@ -487,7 +489,7 @@ var GameUI = new Vue({
 				case 'checkAppPsw': //这个是app的解锁
 					var psw = $('#pswText').val();
 
-					if (psw == window._config.password) {
+					if (DEBUG || psw == window._config.password) {
 						window._gameRuntime.step = step.app_login_suc;
 						self.UI.isLoginApp = true;
 						self.onAction('openMsg');
@@ -596,10 +598,10 @@ var main = {
 			GameUI.pushMsg(_chat);
 
 			_chat.delay = _chat.delay || 0; //处理dely
-			
+
 			//当前对话指针移动到next
 			GameUI.$data.currentChatMsgId = _chat.next;
-			
+
 			//所有对话经此函数判断，是否对话停止
 			var _isStop = main.stopChatHandler(GameUI.$data.currentChatRoom.roomId, id);
 			if(!_isStop){
@@ -607,7 +609,7 @@ var main = {
 					main.nextChat(_chat.next || 0);
 				}, _chat.delay);
 			}
-			
+
 
 		} else if (data.chatType == 2) { //回答消息
 			var _answer = helper.chatAnswerFormate(data);
@@ -760,7 +762,10 @@ var helper = {
 		});
 	},
 	playMusic: function(scene) {
-		return;
+		if(DEBUG){
+			return;
+		}
+
 		var musicObj = window._gameRuntime.music;
 		for (var key in musicObj) {
 			musicObj[key].pause();
