@@ -50,7 +50,7 @@
 								<p>邮件</p>
 							</li>
 					        <li @click="onAction('openApp')" v-if="UI.app_icon_show">
-								<i class="ui-reddot"></i>
+								<i class="ui-reddot" v-if="UI.app_icon_reddot"></i>
 								<img class="app-icon" src="img/icon/bukesiyi.png">
 								<p>不可思议</p>
 							</li>

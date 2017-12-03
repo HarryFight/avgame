@@ -6,34 +6,34 @@ var step = {
 	see_mail_1: 300,
 	app_login_suc: 400,
 
-	chat_room1_c1_push: 490,
-	chat_room1_c1_start: 500, //群聊1  1-167
-	chat_room1_c1_end: 600,
+	chat_room1_c1_push: 490, //群聊1  1-167
+	chat_room1_c1_end: 600, //等价 mail_2_pushed
+	mail_2_pushed: 600,
 
 	see_mail_2: 700,
 
-	chat_room1_c2_start: 800, //看完邮件后群聊1继续   200-202
+	chat_room1_c2_push: 790, //看完邮件后群聊1继续   200-202
 	chat_room1_c2_end: 900,
 
-	chat_room2_start: 1000, //room2聊天开始
+	chat_room2_push: 1000, //room2聊天开始
 	chat_room2_end: 1100,
 
-	chat_room1_c3_start: 1200, //群聊1继续   203-209
+	chat_room1_c3_push: 1200, //群聊1继续   203-209
 	chat_room1_c3_end: 1300,
 
-	chat_room3_start: 1400, //room3聊天开始
+	chat_room3_push: 1400, //room3聊天开始
 	chat_room3_end: 1500,
 
-	chat_room1_c4_start: 1600, //群聊1继续  8001-250
+	chat_room1_c4_push: 1600, //群聊1继续  8001-250
 	chat_room1_c4_end: 1700, 
 
-	chat_room4_start: 1800,
+	chat_room4_push: 1800,
 	chat_room4_end: 1900,
 
-	chat_room5_start: 2000,
+	chat_room5_push: 2000,
 	chat_room5_end: 2100,
 
-	chat_room6_start: 2200,
+	chat_room6_push: 2200,
 	chat_room6_end: 2300,
 };
 //游戏进行时
@@ -89,6 +89,15 @@ var GameUI = new Vue({
 		},
 		// 当前进行到的对话
 		currentChatMsgId: 1,
+		// 聊天室对话停止控制
+		chatStopCtrl:{
+			1:false,
+			2:false,
+			3:false,
+			4:false,
+			5:false,
+			6:false
+		},
 
 
 		// 邮件列表
@@ -99,7 +108,8 @@ var GameUI = new Vue({
 			isLogin:false,
 			isLoginApp:false,
 			app_icon_show: false,
-			mail_icon_reddot: false
+			mail_icon_reddot: false,
+			app_icon_reddot: false
 		}
 	},
 	mounted: function() {
@@ -114,9 +124,10 @@ var GameUI = new Vue({
 
 
 		/**
-		 * 事件绑定们
+		 * 剧情事件们
 		 */
 
+		//可能有时延
 		bus.once('mail_1_pushed',function() {
 			var firstMail = helper.getMailDetailData(1); //展示id为1的第一封邮件
 			firstMail.reddot = true; //有红点
@@ -128,23 +139,235 @@ var GameUI = new Vue({
 		bus.once('see_mail_1',function() {
 			self.mailList[0].reddot = false;
 			self.UI.mail_icon_reddot = false;
-
-			self.UI.app_icon_show = true;
 			window._gameRuntime.step = step.see_mail_1;
+
+			setTimeout(function(){
+				bus.emit('chat_room1_c1_push');
+			},1000)
 		});
+
+		//可能有时延
 		bus.once('chat_room1_c1_push',function(){
 			var firstChat = helper.getChatRoomData(1);
 			firstChat.reddot = true; //有红点
 			self.chatRoomList.push(firstChat);
 
+			self.UI.app_icon_show = true;
+			self.UI.app_icon_reddot = true;
 			window._gameRuntime.step = step.chat_room1_c1_push;
 		});
 
+		bus.once('chat_room1_c1_end',function(){
+			window._gameRuntime.step = step.chat_room1_c1_end;
+			self.chatRoomList[0].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['1'] = true;
+
+			setTimeout(function(){
+				bus.emit('mail_2_pushed');
+			},1000);
+		});
+
+		//可能有时延
 		bus.once('mail_2_pushed',function() {
-			console.log('once')
+			var Mail = helper.getMailDetailData(2); //展示id为2的邮件
+			Mail.reddot = true; //有红点
+			self.mailList.push(Mail);
+
+			self.UI.mail_icon_reddot = true;
+			window._gameRuntime.step = step.mail_2_pushed;
 		});
 		bus.once('see_mail_2',function() {
+			self.mailList[1].reddot = false;
+			self.UI.mail_icon_reddot = false;
+			window._gameRuntime.step = step.see_mail_2;
+
+			setTimeout(function(){
+				bus.emit('chat_room1_c2_push')
+			},1000)
 		});
+
+		//可能有时延
+		bus.once('chat_room1_c2_push',function(){
+			self.chatRoomList[0].reddot = true; //有红点
+			self.UI.app_icon_reddot = true;
+
+			self.chatStopCtrl['1'] = false;
+
+			window._gameRuntime.step = step.chat_room1_c2_push;
+		});
+
+		bus.once('chat_room1_c2_end',function(){
+			window._gameRuntime.step = step.chat_room1_c2_end;
+
+			self.chatRoomList[0].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['1'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room2_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room2_push',function(){
+			var Chat = helper.getChatRoomData(2);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room2_push;
+		});
+		bus.once('chat_room2_end',function(){
+			window._gameRuntime.step = step.chat_room2_end;
+
+			self.chatRoomList[1].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['2'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room1_c3_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room1_c3_push',function(){
+			self.chatRoomList[0].reddot = true; //有红点
+			self.UI.app_icon_reddot = true;
+
+			self.chatStopCtrl['1'] = false;
+
+			window._gameRuntime.step = step.chat_room1_c3_push;
+		});
+		bus.once('chat_room1_c3_end',function(){
+			window._gameRuntime.step = step.chat_room1_c3_end;
+
+			self.chatRoomList[0].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['1'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room3_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room3_push',function(){
+			var Chat = helper.getChatRoomData(3);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room3_push;
+		});
+		bus.once('chat_room3_end',function(){
+			window._gameRuntime.step = step.chat_room3_end;
+
+			self.chatRoomList[2].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['3'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room4_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room1_c4_push',function(){
+			self.chatRoomList[0].reddot = true; //有红点
+			self.UI.app_icon_reddot = true;
+
+			self.chatStopCtrl['1'] = false;
+
+			window._gameRuntime.step = step.chat_room1_c4_push;
+		});
+		bus.once('chat_room1_c4_end',function(){
+			window._gameRuntime.step = step.chat_room1_c4_end;
+
+			self.chatRoomList[0].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['1'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room4_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room4_push',function(){
+			var Chat = helper.getChatRoomData(4);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room4_push;
+		});
+		bus.once('chat_room4_end',function(){
+			window._gameRuntime.step = step.chat_room4_end;
+
+			self.chatRoomList[3].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['4'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room5_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room5_push',function(){
+			var Chat = helper.getChatRoomData(5);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room5_push;
+		});
+		bus.once('chat_room5_end',function(){
+			window._gameRuntime.step = step.chat_room5_end;
+
+			self.chatRoomList[4].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['5'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room6_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room6_push',function(){
+			var Chat = helper.getChatRoomData(6);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room6_push;
+
+
+		});
+
+		bus.once('chat_room6_end',function(){
+			window._gameRuntime.step = step.chat_room6_end;
+
+			self.chatRoomList[5].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['6'] = true;
+
+			console.log('剧情结束')
+		});
+
+
+
 
 		/**
 		 *  end
@@ -182,7 +405,11 @@ var GameUI = new Vue({
 
 						window._gameRuntime.step = step.phone_login_suc;
 						self.UI.isLogin = true;
-						bus.emit('mail_1_pushed');
+
+						setTimeout(function(){
+							bus.emit('mail_1_pushed');
+						},1000)
+
 					} else {
 						alert('登录密码错误，请重试')
 					}
@@ -210,9 +437,12 @@ var GameUI = new Vue({
 						var _chatProgress = window._gameRuntime.chatProgress[roomId];
 						self.chatList = _chatProgress.chatList;
 						self.currentChatMsgId = _chatProgress.chatMsgId;
-
 						$(window).scrollTop(9999999);
-						main.startChat(self.currentChatMsgId);
+
+						//当前聊天是否中止
+						if(!self.chatStopCtrl[roomId]){
+							main.startChat(self.currentChatMsgId);
+						}
 					} else {
 
 						main.startChat(1);
@@ -260,8 +490,6 @@ var GameUI = new Vue({
 					if (psw == window._config.password) {
 						window._gameRuntime.step = step.app_login_suc;
 						self.UI.isLoginApp = true;
-
-						bus.emit('chat_room1_c1_push');
 						self.onAction('openMsg');
 					} else {
 						alert('密码错误，请重试')
@@ -373,7 +601,7 @@ var main = {
 			GameUI.$data.currentChatMsgId = _chat.next;
 			
 			//所有对话经此函数判断，是否对话停止
-			var _isStop = main.stopChatHandler();
+			var _isStop = main.stopChatHandler(GameUI.$data.currentChatRoom.roomId, id);
 			if(!_isStop){
 				window._gameRuntime.chatTimer = setTimeout(function() {
 					main.nextChat(_chat.next || 0);
@@ -392,8 +620,54 @@ var main = {
 			console.log(id, '无效chatType类型')
 		}
 	},
-	stopChatHandler: function(roomId,chatId,callback){
-		
+	stopChatHandler: function(roomId,chatId){
+		var _isStep = false;
+		if(roomId == 1 && chatId == 167){
+			_isStep = true;
+			bus.emit('chat_room1_c1_end');
+		}
+
+		if(roomId == 1 && chatId == 202){
+			_isStep = true;
+			bus.emit('chat_room1_c2_end');
+		}
+
+		if(roomId == 1 && chatId == 209){
+			_isStep = true;
+			bus.emit('chat_room1_c3_end');
+		}
+
+		if(roomId == 1 && chatId == 250){
+			_isStep = true;
+			bus.emit('chat_room1_c4_end');
+		}
+
+		if(roomId ==2 && chatId == 20){
+			_isStep = true;
+			bus.emit('chat_room2_end');
+		}
+
+		if(roomId ==3 && chatId == 14){
+			_isStep = true;
+			bus.emit('chat_room3_end');
+		}
+
+		if(roomId ==4 && chatId == 17){
+			_isStep = true;
+			bus.emit('chat_room4_end');
+		}
+
+		if(roomId ==5 && chatId == 15){
+			_isStep = true;
+			bus.emit('chat_room5_end');
+		}
+
+		if(roomId ==6 && chatId == 23){
+			_isStep = true;
+			bus.emit('chat_room6_end');
+		}
+
+		return _isStep;
 	},
 	resumeChatHandler: function(roomId,chatId,callback){
 
@@ -496,3 +770,19 @@ var helper = {
 		musicObj[scene].play();
 	}
 };
+
+
+//监听step变化并输出
+(function(){
+	Object.defineProperty(_gameRuntime, 'step', {
+		set: function(value) {
+			var _step = value;
+
+			for(var key in step) {
+				if (step[key] == _step) {
+					console.log('当前step已经进行到',key);
+				}
+			}
+		}
+	});
+})();
