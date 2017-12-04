@@ -1,3 +1,18 @@
+::-webkit-scrollbar {
+	width: 0px;
+	height: 1px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.2);
+}
+.ui-reddot:after, .ui-reddot-border:after, .ui-reddot-s:after{
+	width: 12px !important;
+    height: 12px !important;
+    border-radius: 6px !important;
+}
+
 [v-cloak] {
 	display: none;
 }
@@ -80,7 +95,9 @@ html,body{
 
 /*桌面*/
 .phone-desktop{
-	background: url(bg1.jpg) no-repeat !important;
+	width: 100%;
+	background-image: url(bg1.jpg) !important;
+	background-size: 100%;
 }
 .phone-desktop .app-icon-list{
 	clear: both;
@@ -223,12 +240,11 @@ html,body{
 	/*background: #e8f0fa;*/
 }
 .phone-msg-detail .chat-answer-option:hover{
-	background: #ffffff;
+	background: #0522ff;
 }
 .phone-msg-detail .chat-line .ui-avatar-s{
 	line-height: 40px;
 }
-
 
 /*邮件收件箱*/
 .phone-mail .ui-list{
