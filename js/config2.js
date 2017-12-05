@@ -109,7 +109,7 @@ window._config = {
 			msg: '噢噢！ ^*^',
 			isFriend: true,
 			next: 4,
-			delay: 1500
+			delay: 1000
 		},
 		4: {
 			chatType: 1,
@@ -280,7 +280,7 @@ window._config = {
 			msg: 'img/emoji/zen01.jpg',//{po一张他穿着华丽衣服在某个会场的照片}
 			isFriend: true,
 			next: 23,
-			delay: 2000
+			delay: 1500
 		},
 		23: {
 			chatType: 1, 
@@ -289,7 +289,7 @@ window._config = {
 			msg: 'img/emoji/fukua.gif',//{po浮夸的表情包}
 			isFriend: true,
 			next: 24,
-			delay: 2000
+			delay: 1500
 		},
 		24: {
 			chatType: 1, 
@@ -345,7 +345,7 @@ window._config = {
 			msg: '今天我收到了一封邮件，上面有个叫龙天光的人向我求救，说是让我下载这个软件，输入一个邀请码，之后希望我和里面的人搞好关系。但我也不清楚情况，为什么这么做能救人？你们有人认识龙天光吗？',
 			isFriend: false,
 			next: 31,
-			delay: 4000
+			delay: 3000
 		},
 		31: {
 			chatType: 1, 
@@ -377,7 +377,7 @@ window._config = {
 			msg: 'Good name！天之光。像是某种启示！像是故事的主人公。真想和有这样名字的人认识啊……当然，比起我那简约却优美，让人过目难忘的名字，还是差那么一筹。',
 			isFriend: true,
 			next: 35,
-			delay: 2000
+			delay: 1500
 		},
 		35: {
 			chatType: 1, 
@@ -394,7 +394,7 @@ window._config = {
 			msg: '只怕的确是故事里的名字。这位小姐，你编造这个听起来就可笑的故事是什么意思？有人向你求救，说找我们聊天就可以救人，你也相信？',
 			isFriend: true,
 			next: 37,
-			delay: 3000
+			delay: 2000
 		},
 		37: {
 			chatType: 1, 
@@ -468,7 +468,7 @@ window._config = {
 			msg: 'img/emoji/youxiangjietu.png',//{放出一张图片，正是女主邮箱的截图｝
 			isFriend: true,
 			next: 46,
-			delay: 3000
+			delay: 1500
 		},
 		46: {
 			chatType: 1, 
@@ -905,7 +905,7 @@ window._config = {
 			msg: '这么轻飘飘地说的话，奴家不信啦……',
 			isFriend: true,
 			next: 104,
-			delay: 3000
+			delay: 2000
 		},
 		104: {
 			chatType: 1, 
@@ -938,7 +938,7 @@ window._config = {
 			msg: '在生物学中，也有“外源论”，认为人类的DNA有部分是从其他星球来的。人类与其他生物分别的基因频段，例如HAR1，仿佛是一夜之间就出现在人类身上，并没有充分的进化的时间，很可能是被植入或融合的。',
 			isFriend: true,
 			next: 108,
-			delay: 4000
+			delay: 2000
 		},
 		108: {
 			chatType: 1, 
@@ -951,7 +951,7 @@ window._config = {
 		109: {
 			chatType: 1, 
 			actorId:3,
-			msg: '不过不用难过。毕竟，我可是有千万粉丝支持的人(oﾟvﾟ)ノ',
+			msg: '不过不用难过。毕竟，我可是有百万粉丝支持的人(oﾟvﾟ)ノ',
 			isFriend: true,
 			next: 110,
 			delay: 1500
@@ -963,7 +963,7 @@ window._config = {
 			msg: 'img/emoji/deyi.jpg',//{po一张得意的表情包}
 			isFriend: true,
 			next: 111,
-			delay: 3000
+			delay: 2000
 		},
 		111: {
 			chatType: 1, 
@@ -1019,7 +1019,7 @@ window._config = {
 			msg: '我反对，那封邮件只不过是恶劣的玩笑，况且我们根本不知道她的真实身份。',
 			isFriend: true,
 			next: 119,
-			delay: 3000
+			delay: 2000
 		},
 		119: {
 			chatType: 1, 
@@ -1035,7 +1035,7 @@ window._config = {
 			msg: '谁是我们设定的群主？把她移出群聊吧，我们也改个邀请码。对了，小姐，你自己最好也忘了这个无聊的玩笑。',
 			isFriend: true,
 			next: 121,
-			delay: 4000
+			delay: 3000
 		},
 		121: {
 			chatType: 1, 
@@ -1091,7 +1091,7 @@ window._config = {
 			msg: '怎么可能是我！我当年最小，软件都不太会用，不是我建的！',
 			isFriend: true,
 			next: 128,
-			delay: 3000
+			delay: 2000
 		},
 		128: {
 			chatType: 1, 
@@ -1115,7 +1115,7 @@ window._config = {
 			msg: '来了！修式打脸！',
 			isFriend: true,
 			next: 131,
-			delay: 3000
+			delay: 2000
 		},
 		131: {
 			chatType: 1, 
@@ -1131,7 +1131,7 @@ window._config = {
 			msg: '不过，我觉得这样也不错呀。我们本质上，不是追寻神秘事件的团体吗？我觉得，说不定这位小姐的奇遇，也是一种神秘事件呢。我们应该接纳这样的神秘……^^',
 			isFriend: true,
 			next: 133,
-			delay: 4000
+			delay: 3000
 		},
 		133: {
 			chatType: 1, 
@@ -1163,7 +1163,7 @@ window._config = {
 			msg: '嘿嘿，不用谢(/≧▽≦)/以后社长我罩你的！',
 			isFriend: true,
 			next: 137,
-			delay: 2000
+			delay: 1500
 		},
 		137: {
 			chatType: 1,   
@@ -1203,7 +1203,7 @@ window._config = {
 			msg: '那么，我们要不要自我介绍下？我先来吧，我是长风，现实中是位厨师，还在修行中。如果可以的话，希望@软糖 小姐能告诉我你的口味，下次聚会时给你准备合适的食物。',
 			isFriend: true,
 			next: 143,
-			delay: 4000
+			delay: 2000
 		},
 		143: {
 			chatType: 1,  
@@ -1236,7 +1236,7 @@ window._config = {
 			msg: 'img/emoji/zen03.jpg',//{po一张帅气的图}
 			isFriend: true,
 			next: 147,
-			delay: 4000
+			delay: 2000
 		},
 		147: {
 			chatType: 1,  
@@ -1260,7 +1260,7 @@ window._config = {
 			msg: '哈哈，就是本少爷是宇宙第一明星，以后也会让外星人崇拜得五体投地的那种吗？',
 			isFriend: true,
 			next: 150,
-			delay: 3000
+			delay: 2000
 		},
 		150: {
 			chatType: 1,  
@@ -1292,7 +1292,7 @@ window._config = {
 			msg: '啊哈哈哈！',
 			isFriend: true,
 			next: 154,
-			delay: 4000
+			delay: 3000
 		},
 		154: {
 			chatType: 1,  
@@ -1300,7 +1300,7 @@ window._config = {
 			msg: '对了，阿修不爱说话，我代他说了吧。阿修是个大学生，学的计算机，擅长各种程序、网路相关的事情。……还差韩大没说了。',
 			isFriend: true,
 			next: 155,
-			delay: 3000
+			delay: 2000
 		},
 		155: {
 			chatType: 1,  
@@ -1316,7 +1316,7 @@ window._config = {
 			msg: '哦~哦~如今世界最大的连锁集团Martort公司，亚洲部最年轻的EVP是闲人的话，那我们的存在感就稀薄到连能不能还算是人都成问题了~',
 			isFriend: true,
 			next: 157,
-			delay: 4000
+			delay: 3000
 		},
 		157: {
 			chatType: 1,  
@@ -1364,7 +1364,7 @@ window._config = {
 			msg: '嗯~那好吧。@软糖 今天也算是认识了，还有什么问题的话，私信我哦。我们软件不仅可以群聊，也可以和注册过的人私聊的。',
 			isFriend: true,
 			next: 163,
-			delay: 3000
+			delay: 2000
 		},
 		163: {
 			chatType: 1,  
@@ -1576,7 +1576,7 @@ window._config = {
 			msg: '这怎么可能！',
 			isFriend: true,
 			next: 219,    
-			delay: 2000    
+			delay: 1500    
 		},
 		219: {
 			chatType: 1, 
@@ -1641,7 +1641,7 @@ window._config = {
 			actorId:3,
 			msg: '我最近发现了不得了的secret。',
 			isFriend: true,
-			next: 232,    
+			next: 231,    
 			delay: 2000    
 		},
 		231: {
@@ -1658,7 +1658,7 @@ window._config = {
 			msg: '我终于想通了，过去，我一直以为人类是自由的、自在的、自主的。',
 			isFriend: true,
 			next: 233,    
-			delay: 2000    
+			delay: 1500    
 		},
 		233: {
 			chatType: 1, 
@@ -1674,7 +1674,7 @@ window._config = {
 			msg: '既然，人类远古的时候和外星人有过接触，为什么科技高明的他们没有控制人类呢？',
 			isFriend: true,
 			next: 235,    
-			delay: 4000    
+			delay: 3000    
 		},
 		235: {
 			chatType: 1, 
@@ -1682,7 +1682,7 @@ window._config = {
 			msg: '答案是，他们其实是在控制人类！我们现在肯定生活在外星人设计的虚拟现实中！少数人知道世界的真相，比如共济会、骷髅会，还有一切传说中的控制者们，其实他们都是外星人扶持的傀儡！',
 			isFriend: true,
 			next: 236,    
-			delay: 4000    
+			delay: 3000    
 		},
 		236: {
 			chatType: 1, 
@@ -1698,7 +1698,7 @@ window._config = {
 			msg: '人类不是自由的，我们只是外星人弹奏的命运之弦上渺小的尘埃……',
 			isFriend: true,
 			next: 238,    
-			delay: 3000    
+			delay: 2000    
 		},
 		238: {
 			chatType: 1, 
@@ -1706,7 +1706,7 @@ window._config = {
 			msg: '我决定把这个的想法公之于众！所以，这周六我要开一场线上直播演唱会“如果人类不是地球的主人！”',
 			isFriend: true,
 			next: 239,    
-			delay: 4000    
+			delay: 2000    
 		},
 		239: {
 			chatType: 1, 
@@ -1723,7 +1723,7 @@ window._config = {
 			msg: 'img/emoji/zen05.jpg',//{po一张演唱会帅气排练图}
 			isFriend: true,
 			next: 9012,    
-			delay: 3000    
+			delay: 2000    
 		},
 		241: {
 			chatType: 1, //9012选项1内容241-247
@@ -1739,7 +1739,7 @@ window._config = {
 			msg: '只有我的守护骑士才有免费的票，其他人都要购票呢。',
 			isFriend: true,
 			next: 243,    
-			delay: 4000    
+			delay: 3000    
 		},
 		243: {
 			chatType: 1, 
@@ -1778,7 +1778,7 @@ window._config = {
 			actorId:3,
 			msg: '嗯，我知道阿愈是在害羞~哈哈！那么，大家别忘了哦。',
 			isFriend: true,
-			next: 9013,    
+			next: 250,    
 			delay: 1500    
 		},
 		248: {
@@ -1797,78 +1797,6 @@ window._config = {
 			next: 245,    
 			delay: 2000    
 		},
-		260: {
-			chatType: 1, //9013选项内容
-			actorId:1,
-			msg: '我打算去长风的餐厅尝尝他的手艺，相比演唱会我更爱美食多一些。',
-			isFriend: false,
-			next: 261,    
-			delay: 2000    
-		},
-		261: {
-			chatType: 1, 
-			actorId:3,
-			msg: '不冲突啊，长风的餐厅提前预定至少要3个月，就算是我说要给他做直播也让我预约~真是太伤我的心了！那是千万粉丝的关注呢。',
-			isFriend: true,
-			next: 262,    
-			delay: 3000    
-		},
-		262: {
-			chatType: 1, 
-			actorId:5,
-			msg: '...长风需要你的粉丝吗？真好笑。',
-			isFriend: true,
-			next: 9014,    
-			delay: 2000    
-		},
-		263: {
-			chatType: 1, 
-			actorId:1,
-			msg: '长风说随时欢迎，原来是这么有名的餐厅，我是不是给他添麻烦了？',
-			isFriend: false,
-			next: 264,    
-			delay: 5000    
-		},
-		264: {
-			chatType: 1, 
-			actorId:2,
-			msg: '@长风！上次我为了向女神告白，苦苦哀求你给我安排晚餐你都没答应！你还我女神！',
-			isFriend: true,
-			next: 265,    
-			delay: 2000    
-		},
-		265: {
-			chatType: 1, 
-			actorId:3,
-			msg: '没想到我千万粉丝关注都比不上软糖笑容的吸引力，我理解你',
-			isFriend: true,
-			next: 266,    
-			delay: 4000    
-		},
-		266: {
-			chatType: 1, 
-			actorId:4,
-			msg: '我想吃，带我',
-			isFriend: true,
-			next: 267,    
-			delay: 4000    
-		},
-		267: {
-			chatType: 1, 
-			actorId:6,
-			msg: '啊....哈哈哈....就当是欢迎新社团成员嘛，而且美丽的女孩与甜蜜的蛋糕最般配了@软糖。',
-			isFriend: true,
-			next: 268,    
-			delay: 3000    
-		},
-		268: {
-			chatType: 1, 
-			actorId:3,
-			msg: '软糖你换个时间吧，长风不会消失，我梦幻的演唱会可是转瞬即逝的，说好咯！',
-			isFriend: true,
-			next: 250,    
-			delay: 2000    
-		},
 		250: {
 			chatType: 1, 
 			actorId:7,
@@ -1883,12 +1811,12 @@ window._config = {
 				{
 					msg: '大家好',
 					next: 14,
-					delay: 1000
+					delay: 500
 				},
 				{
 					msg: '你们是谁？',
 					next: 16,
-					delay: 1000
+					delay: 500
 				}
 			]
 		},
@@ -1898,12 +1826,12 @@ window._config = {
 				{
 					msg: '我没有恶意的',
 					next: 18,
-					delay: 1000
+					delay: 500
 				},
 				{
 					msg: '你们的聊天不允许别人加入?',
 					next: 19,
-					delay: 1000
+					delay: 500
 				}
 			]
 		},
@@ -1913,12 +1841,12 @@ window._config = {
 				{
 					msg: '我是因为一封邮件',
 					next: 30,
-					delay: 2000
+					delay: 500
 				},
 				{
 					msg: '这个怎么说呢。。。',
 					next: 50,
-					delay: 2000
+					delay: 500
 				}
 			]
 		},
@@ -1928,12 +1856,12 @@ window._config = {
 				{
 					msg: '你们到底是做什么的？',
 					next: 80,
-					delay: 1000
+					delay: 500
 				},
 				{
 					msg: '这个软件到底是做什么的？',
 					next: 80,
-					delay: 1000
+					delay: 500
 				}
 			]
 		},
@@ -1943,12 +1871,12 @@ window._config = {
 				{
 					msg: '我相信',
 					next: 115,
-					delay: 1000
+					delay: 500
 				},
 				{
 					msg: '我不相信',
 					next: 116,
-					delay: 1000
+					delay: 500
 				}
 			]
 		},
@@ -1958,12 +1886,12 @@ window._config = {
 				{
 					msg: '谢谢各位，我也很想参加社团',
 					next: 136,
-					delay: 1000
+					delay: 500
 				},
 				{
 					msg: '我是为了救人才留在这里的',
 					next: 140,
-					delay: 1000
+					delay: 500
 				}
 			]
 		},
@@ -2013,26 +1941,6 @@ window._config = {
 				{
 					msg: '人类就是地球的主人!',
 					next: 349,
-					delay: 1000
-				}
-			]
-		},
-		9013: {
-			chatType: 2, //1-消息对话，2-回复选项
-			msgOption: [
-				{
-					msg: '我可能去不了',
-					next: 260,
-					delay: 2000
-				}
-			]
-		},
-		9014: {
-			chatType: 2, //1-消息对话，2-回复选项
-			msgOption: [
-				{
-					msg: '他邀请我去的',
-					next: 263,
 					delay: 1000
 				}
 			]

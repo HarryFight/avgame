@@ -451,7 +451,7 @@ var GameUI = new Vue({
 					}
 
 					//启动聊天的背景音乐
-					helper.playMusic('chatRoom');
+					//helper.playMusic('chatRoom');
 					self.showPage('msgDetail');
 					break;
 				case 'closeContacts':
@@ -475,7 +475,7 @@ var GameUI = new Vue({
 					clearTimeout(window._gameRuntime.chatTimer);
 
 					//继续执行后续动作
-					helper.playMusic('bg');
+					//helper.playMusic('bg');
 					self.onAction(nextAction);
 					break;
 				case 'openApp':
