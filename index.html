@@ -31,7 +31,7 @@
 			        <!--登录密码-->
 			        <div class="phone-content phone-login" v-show="contentShow.login">
 				        <div>
-					        <input type="password" id="loginPsw" placeholder="四位数字" style="text-align:center;color: gray；">
+					        <input type="password" id="loginPsw" placeholder="四位数字" style="text-align:center;color: gray；position: fixed;   left: 0px;  right: 0px;   margin: auto; ">
 					        <img src="./img/psw.png" @click="onAction('checkLogin')">
 				        </div>
 			        </div>
@@ -81,9 +81,9 @@
 					<!--输入APP密码界面-->
 					<div class="phone-content phone-psw" v-show="contentShow.psw">
 						<div>
-							<input type="text" id="nameText" value="软糖">
-							<input type="password" id="pswText">
-							<img src="css/psw2.png" @click="onAction('checkAppPsw')">
+							<input type="text" id="nameText" placeholder="账户名" style="position: fixed;  left: 0px;  right: 0px;   margin: auto;">
+							<input type="password" id="pswText" placeholder="邀请码" style="position: fixed;  left: 0px;  right: 0px;   margin: auto;">
+							<img src="css/psw2.png" @click="onAction('checkAppPsw')" >
 						</div>
 					</div>
 

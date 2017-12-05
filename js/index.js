@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = window._config.DEBUG;
 
 //游戏步骤定义
 var step = {
@@ -37,6 +37,9 @@ var step = {
 
 	chat_room6_push: 2200,
 	chat_room6_end: 2300,
+
+	chat_room7_push: 2400,
+	chat_room7_end: 2500,
 };
 //游戏进行时
 window._gameRuntime = {
@@ -98,7 +101,8 @@ var GameUI = new Vue({
 			3:false,
 			4:false,
 			5:false,
-			6:false
+			6:false,
+			7:false
 		},
 
 
@@ -353,8 +357,6 @@ var GameUI = new Vue({
 			self.UI.app_icon_reddot = true;
 
 			window._gameRuntime.step = step.chat_room6_push;
-
-
 		});
 
 		bus.once('chat_room6_end',function(){
@@ -364,6 +366,29 @@ var GameUI = new Vue({
 			self.UI.app_icon_reddot = false;
 
 			self.chatStopCtrl['6'] = true;
+
+			setTimeout(function(){
+				bus.emit('chat_room7_push');
+			},1000)
+		});
+
+		//可能有时延
+		bus.once('chat_room7_push',function(){
+			var Chat = helper.getChatRoomData(7);
+			Chat.reddot = true; //有红点
+			self.chatRoomList.push(Chat);
+			self.UI.app_icon_reddot = true;
+
+			window._gameRuntime.step = step.chat_room7_push;
+		});
+
+		bus.once('chat_room7_end',function(){
+			window._gameRuntime.step = step.chat_room7_end;
+
+			self.chatRoomList[6].reddot = false;
+			self.UI.app_icon_reddot = false;
+
+			self.chatStopCtrl['7'] = true;
 
 			console.log('剧情结束')
 		});
@@ -413,7 +438,7 @@ var GameUI = new Vue({
 						},1000)
 
 					} else {
-						alert('登录密码错误，请重试')
+						alert('输错了(┬＿┬)打屁屁')
 					}
 
 					//清空输入框
@@ -494,7 +519,7 @@ var GameUI = new Vue({
 						self.UI.isLoginApp = true;
 						self.onAction('openMsg');
 					} else {
-						alert('密码错误，请重试')
+						alert('输错了(┬＿┬)打脸')
 					}
 
 					//清空输入框
@@ -598,6 +623,10 @@ var main = {
 			GameUI.pushMsg(_chat);
 
 			_chat.delay = _chat.delay || 0; //处理dely
+			_chat.delay = _chat.delay * window._config.speed;
+			if(DEBUG){
+				_chat.delay = 100;
+			}
 
 			//当前对话指针移动到next
 			GameUI.$data.currentChatMsgId = _chat.next;
@@ -669,6 +698,11 @@ var main = {
 			bus.emit('chat_room6_end');
 		}
 
+		if(roomId ==7 && chatId == 5){
+			_isStep = true;
+			bus.emit('chat_room6_end');
+		}
+
 		return _isStep;
 	},
 	resumeChatHandler: function(roomId,chatId,callback){
@@ -676,6 +710,10 @@ var main = {
 	},
 	answerChat: function(answer) {
 		answer.delay = answer.delay || 0; //处理dely
+		answer.delay = answer.delay * window._config.speed;
+		if(DEBUG){
+			answer.delay = 100;
+		}
 		window._gameRuntime.chatTimer = setTimeout(function() {
 			main.nextChat(answer.next || 0);
 		}, answer.delay);
