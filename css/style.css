@@ -187,6 +187,8 @@ html,body{
 .phone-msg-detail .phone-title{
 	position: fixed;
 	z-index: 999;
+	background: rgba(255,255,255,0.7);
+
 }
 .phone-msg-detail{
 	border-bottom: 100px solid transparent;

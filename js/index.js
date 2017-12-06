@@ -513,14 +513,15 @@ var GameUI = new Vue({
 					break;
 				case 'checkAppPsw': //这个是app的解锁
 					var psw = $('#pswText').val();
-
-					if (DEBUG || psw == window._config.password) {
+					var name = $('#nameText').val();
+					if (DEBUG || psw == window._config.password  && name == window._config.nickName) {
 						window._gameRuntime.step = step.app_login_suc;
 						self.UI.isLoginApp = true;
 						self.onAction('openMsg');
 					} else {
 						alert('输错了(┬＿┬)打脸')
 					}
+
 
 					//清空输入框
 					$('#pswText').val('');
@@ -700,7 +701,7 @@ var main = {
 
 		if(roomId ==7 && chatId == 5){
 			_isStep = true;
-			bus.emit('chat_room6_end');
+			bus.emit('chat_room7_end');
 		}
 
 		return _isStep;

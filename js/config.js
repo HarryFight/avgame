@@ -1,7 +1,7 @@
 //挂载window数据对象
 window._config = {
 	DEBUG: false, // debug模式
-	speed: 1, // 对话速率调整
+	speed: 0.7, // 对话速率调整
 	//主角id
 	mainActorId: 1,
 	//解锁密码
@@ -12,7 +12,7 @@ window._config = {
 	//背景音乐
 	music:{
 		bg:'source/bg.mp3',
-		chatRoom:'source/chatRoom.mp3'
+		//chatRoom:'source/chatRoom.mp3'
 	},
 	//人物定义map
 	actorMap: {
@@ -160,7 +160,7 @@ window._config = {
 			msg: '没问题^^',
 			isFriend: true,
 			next: 7,
-			delay: 6000
+			delay: 5000
 		},
 		7: {
 			chatType: 1,
@@ -192,7 +192,7 @@ window._config = {
 			msg: '怎么了怎么了？',
 			isFriend: true,
 			next: 11,
-			delay: 4000
+			delay: 3000
 		},
 		11: {
 			chatType: 1,
@@ -217,7 +217,7 @@ window._config = {
 			msg: '哎哎，真的啊，是谁啊？不应该有人知道我们这个聊天群的吧？',
 			isFriend: true,
 			next: 9001,
-			delay: 3000
+			delay: 2000
 		},
 		14: {
 			chatType: 1,
@@ -281,7 +281,7 @@ window._config = {
 			msg: '【“尹川”加入了聊天】',
 			isFriend: true,
 			next: 20,    //下一条消息
-			delay: 6000    //下一步流程的延迟
+			delay: 4000    //下一步流程的延迟
 		},
 		20: {
 			chatType: 1, 
@@ -444,7 +444,7 @@ window._config = {
 			msg: '有人向你求救，说找我们聊天就可以救人，你也相信？',
 			isFriend: true,
 			next: 37,
-			delay: 6000
+			delay: 4000
 		},
 		37: {
 			chatType: 1, 
@@ -563,7 +563,7 @@ window._config = {
 		52: {
 			chatType: 1, 
 			actorId:3,
-			msg: '哎？阿愈怎么知道@软糖是位女生？我的百万粉丝怕是都不知道呢！',
+			msg: '哎？阿愈怎么知道@软糖是位女生？我的千万粉丝怕是都不知道呢！',
 			isFriend: true,
 			next: 53,
 			delay: 4000
@@ -713,7 +713,7 @@ window._config = {
 			msg: '哼，恐怕是了。尹川，是你么？',
 			isFriend: true,
 			next: 71,
-			delay: 5000
+			delay: 4000
 		},
 		71: {
 			chatType: 1, 
@@ -721,7 +721,7 @@ window._config = {
 			msg: '呵呵，被阿愈怀疑的感觉也不错。不过这回，我还没来得及谱写这样神秘美丽的邂逅story。',
 			isFriend: true,
 			next: 72,
-			delay: 4000
+			delay: 5000
 		},
 		72: {
 			chatType: 1, 
@@ -830,7 +830,7 @@ window._config = {
 		86: {
 			chatType: 1, 
 			actorId:3,
-			msg: '哦哦，尚社长好!',
+			msg: '哦哦，向社长好!',
 			isFriend: true,
 			next: 87,
 			delay: 3000
@@ -870,7 +870,7 @@ window._config = {
 		91: {
 			chatType: 1, 
 			actorId:3,
-			msg: '唉，真可惜啊，尚社长上任不到一分钟，公司就倒闭了。不由得掬一把同情泪。',
+			msg: '唉，真可惜啊，向社长上任不到一分钟，公司就倒闭了。不由得掬一把同情泪。',
 			isFriend: true,
 			next: 92,
 			delay: 4000
@@ -897,13 +897,13 @@ window._config = {
 			actorId:6,
 			msg: '@软糖 应该是很奇怪我们究竟是做什么的，对吧？其实，我们是研究Ancient Aliens的。',
 			isFriend: true,
-			next: 95,
+			next: 9015,
 			delay: 2000
 		},
 		95: {
 			chatType: 1, 
 			actorId:3,
-			msg: '啊，那么什么是Ancient Aliens呢？',
+			msg: '啊，你连什么是Ancient Aliens都不知道？',
 			isFriend: true,
 			next: 96,
 			delay: 3000
@@ -954,66 +954,66 @@ window._config = {
 			actorId:6,
 			msg: '远古外星人理论认为，人类……或者地球，在古老的时代就和外星人有接触了。我们的历史在某个时刻，深切地受到了外星人的影响。',
 			isFriend: true,
-			next: 101,
-			delay: 4000
-		},
-		101: {
-			chatType: 1, 
-			actorId:3,
-			msg: '有什么证据吗~？有没有有没有？',
-			isFriend: true,
-			next: 102,
-			delay: 4000
-		},
-		102: {
-			chatType: 1, 
-			actorId:6,
-			msg: '确凿的证据的确还没有发现，但是有许多事情都可以作为佐证。',
-			isFriend: true,
-			next: 103,
-			delay: 4000
-		},
-		103: {
-			chatType: 1, 
-			actorId:3,
-			msg: '这么轻飘飘地说的话，奴家不信啦……',
-			isFriend: true,
-			next: 104,
-			delay: 5000
-		},
-		104: {
-			chatType: 1, 
-			actorId:5,
-			msg: '比如玛雅的帕伦克石棺“火箭”浮雕。',
-			isFriend: true,
-			next: 105,
-			delay: 3000
-		},
-		105: {
-			chatType: 1, 
-			actorId:5,
-			isImgMsg: true,
-			msg: 'img/emoji/huojian.jpg',//火箭图
-			isFriend: true,
-			next: 106,
-			delay: 6000
-		},
-		106: {
-			chatType: 1, 
-			actorId:5,
-			msg: '秘鲁的原始飞机轨道，远古壁画上的类似宇航员的生物。除此之外，各国的神话中，也多有人来自天外的暗示。',
-			isFriend: true,
-			next: 307,
-			delay: 4000
-		},
-		307: {
-			chatType: 1, 
-			actorId:5,
-			msg: '巴比伦神话说，乘着交通工具、穿着古怪服装从天而降的Anunnaki创造了人类。',
-			isFriend: true,
 			next: 308,
 			delay: 4000
 		},
+		//101: {
+		//	chatType: 1, 
+		//	actorId:3,
+		//	msg: '有什么证据吗~？有没有有没有？',
+		//	isFriend: true,
+		//	next: 102,
+		//	delay: 4000
+	//	//},
+	//	102: {
+		//	//chatType: 1, 
+		//	actorId:6,
+		//	msg: '确凿的证据的确还没有发现，但是有许多事情都可以作为佐证。',
+		//	isFriend: true,
+		//	next: 103,
+		//	delay: 4000
+		//},
+	//	103: {
+		//	chatType: 1, 
+		//	actorId:3,
+		//	msg: '这么轻飘飘地说的话，奴家不信啦……',
+		//	isFriend: true,
+		//	next: 104,
+		//	delay: 5000
+	//	},
+	//	104: {
+		//	chatType: 1, 
+		//	actorId:5,
+		//	msg: '比如玛雅的帕伦克石棺“火箭”浮雕。',
+		//	isFriend: true,
+		//	next: 105,
+		//	delay: 3000
+	//	},
+	//	105: {
+	//		chatType: 1, 
+	//		actorId:5,
+	//		isImgMsg: true,
+	//		msg: 'img/emoji/huojian.jpg',//火箭图
+	////		isFriend: true,
+	//		next: 106,
+	//		delay: 6000
+	//	},
+	//	106: {
+	////		chatType: 1, 
+	//		actorId:5,
+	//		msg: '秘鲁的原始飞机轨道，远古壁画上的类似宇航员的生物。除此之外，各国的神话中，也多有人来自天外的暗示。',
+	//		isFriend: true,
+	//		next: 307,
+	//		delay: 4000
+	//	},
+	//	307: {
+	//		chatType: 1, 
+	//		actorId:5,
+	//		msg: '巴比伦神话说，乘着交通工具、穿着古怪服装从天而降的Anunnaki创造了人类。',
+	//		isFriend: true,
+	//		next: 308,
+	//		delay: 4000
+	//	},
 		308: {
 			chatType: 1, 
 			actorId:5,
@@ -1027,17 +1027,17 @@ window._config = {
 			actorId:5,
 			msg: '在生物学中，也有“外源论”，认为人类的DNA有部分是从其他星球来的。',
 			isFriend: true,
-			next: 309,
+			next: 108,
 			delay: 4000
 		},
-		309: {
-			chatType: 1, 
-			actorId:5,
-			msg: '人类与其他生物分别的基因频段，例如HAR1，仿佛是一夜之间就出现在人类身上，并没有充分的进化的时间，很可能是被植入或融合的。',
-			isFriend: true,
-			next: 108,
-			delay: 6000
-		},
+	//	309: {
+	//		chatType: 1, 
+	//		actorId:5,
+	//		msg: '人类与其他生物分别的基因频段，例如HAR1，仿佛是一夜之间就出现在人类身上，并没有充分的进化的时间，很可能是被植入或融合的。',
+	//		isFriend: true,
+	//		next: 108,
+	//		delay: 6000
+	//	},
 		108: {
 			chatType: 1, 
 			actorId:3,
@@ -1049,7 +1049,7 @@ window._config = {
 		109: {
 			chatType: 1, 
 			actorId:3,
-			msg: '不过不用难过。毕竟，我可是有千万粉丝支持的人(oﾟvﾟ)ノ',
+			msg: '不用难过。毕竟，我可是有千万粉丝支持的人(oﾟvﾟ)ノ',
 			isFriend: true,
 			next: 110,
 			delay: 3000
@@ -1066,7 +1066,7 @@ window._config = {
 		111: {
 			chatType: 1, 
 			actorId:5,
-			msg: '差不多就是这样。',
+			msg: '说到这，我们似乎很久没组织研究活动了...',
 			isFriend: true,
 			next: 112,
 			delay: 6000
@@ -1411,7 +1411,7 @@ window._config = {
 		154: {
 			chatType: 1,  
 			actorId:6,
-			msg: '对了，阿修不爱说话，我代他说了吧。阿修是个大学生，学的计算机，擅长各种程序、网路相关的事情。……还差韩大没说了。',
+			msg: '对了，阿修不爱说话，我代他说了吧。阿修是个大学生，擅长与网路相关的一切事情，不要惹怒他……还差韩大没说了。',
 			isFriend: true,
 			next: 155,
 			delay: 4000
@@ -1777,7 +1777,7 @@ window._config = {
 		232: {
 			chatType: 1, 
 			actorId:3,
-			msg: '我终于想通了，过去，我一直以为人类是自由的、自在的、自主的。',
+			msg: '过去，我一直以为人类是自由的、自在的、自主的。',
 			isFriend: true,
 			next: 233,    
 			delay: 4000    
@@ -1793,7 +1793,7 @@ window._config = {
 		234: {
 			chatType: 1, 
 			actorId:3,
-			msg: '既然，人类远古的时候和外星人有过接触，为什么科技高明的他们没有控制人类呢？',
+			msg: '人类远古的时候和外星人有过接触，为什么科技高明的他们没有控制人类呢？',
 			isFriend: true,
 			next: 235,    
 			delay: 6000    
@@ -1803,17 +1803,17 @@ window._config = {
 			actorId:3,
 			msg: '答案是，他们其实是在控制人类！我们现在肯定生活在外星人设计的虚拟现实中！',
 			isFriend: true,
-			next: 315,    
+			next: 236,    
 			delay: 4000    
 		},
-		315: {
-			chatType: 1, 
-			actorId:3,
-			msg: '少数人知道世界的真相，比如共济会、骷髅会，还有一切传说中的控制者们，其实他们都是外星人扶持的傀儡！',
-			isFriend: true,
-			next: 236,    
-			delay: 5000    
-		},
+		//315: {
+		//	chatType: 1, 
+		//	actorId:3,
+		//	msg: '少数人知道世界的真相，比如共济会、骷髅会，还有一切传说中的控制者们，其实他们都是外星人扶持的傀儡！',
+		//	isFriend: true,
+		//	next: 236,    
+		//	delay: 5000    
+		//},
 		236: {
 			chatType: 1, 
 			actorId:5,
@@ -1833,7 +1833,7 @@ window._config = {
 		238: {
 			chatType: 1, 
 			actorId:3,
-			msg: '我决定把这个的想法公之于众！所以，这周六我要开一场线上直播演唱会“如果人类不是地球的主人！”',
+			msg: '我决定把这个的想法公之于众！这周六我要开一场线上直播演唱会“如果人类不是地球的主人！”',
 			isFriend: true,
 			next: 239,    
 			delay: 6000    
@@ -1938,7 +1938,7 @@ window._config = {
 		261: {
 			chatType: 1, 
 			actorId:3,
-			msg: '不冲突啊，长风的餐厅提前预定至少要3个月，就算是我说要给他做直播也让我预约~真是太伤我的心了！那是千万粉丝的关注呢。',
+			msg: '不冲突啊，长风的餐厅提前预定至少要3个月，就算是我说要给他做直播也让我预约~真是太伤我的心了！我的粉丝也会看到你的餐厅哪！',
 			isFriend: true,
 			next: 262,    
 			delay: 6000    
@@ -1946,7 +1946,7 @@ window._config = {
 		262: {
 			chatType: 1, 
 			actorId:5,
-			msg: '...长风需要你的粉丝吗？真好笑。',
+			msg: '...长风需要你的粉丝吗？',
 			isFriend: true,
 			next: 9014,    
 			delay: 4000    
@@ -1962,7 +1962,7 @@ window._config = {
 		264: {
 			chatType: 1, 
 			actorId:2,
-			msg: '@长风！上次我为了向女神告白，苦苦哀求你给我安排晚餐你都没答应！你还我女神！',
+			msg: '什么?!随时？@长风！上次我为了向女神告白，苦苦哀求你给我安排晚餐你都没答应！你还我女神！',
 			isFriend: true,
 			next: 265,    
 			delay: 4000    
@@ -1970,7 +1970,7 @@ window._config = {
 		265: {
 			chatType: 1, 
 			actorId:3,
-			msg: '没想到我千万粉丝关注都比不上软糖笑容的吸引力，我理解你',
+			msg: '没想到我千万粉丝都比不上软糖笑容的吸引力，我理解你',
 			isFriend: true,
 			next: 266,    
 			delay: 6000    
@@ -1978,7 +1978,7 @@ window._config = {
 		266: {
 			chatType: 1, 
 			actorId:4,
-			msg: '我想吃，带我',
+			msg: '软糖，带我',
 			isFriend: true,
 			next: 267,    
 			delay: 5000    
@@ -1986,7 +1986,7 @@ window._config = {
 		267: {
 			chatType: 1, 
 			actorId:6,
-			msg: '啊....哈哈哈....就当是欢迎新社团成员嘛，而且美丽的女孩与甜蜜的蛋糕最般配了@软糖。',
+			msg: '呃....哈哈哈....就当是欢迎新社团成员嘛，而且美丽的女孩与甜蜜的蛋糕最般配了@软糖。',
 			isFriend: true,
 			next: 268,    
 			delay: 6000    
@@ -1994,7 +1994,7 @@ window._config = {
 		268: {
 			chatType: 1, 
 			actorId:3,
-			msg: '软糖你换个时间吧，长风不会消失，我梦幻的演唱会可是转瞬即逝的，说好咯！',
+			msg: '软糖，长风不会消失，我梦幻的演唱会可是转瞬即逝哦，投向我的怀抱吧。',
 			isFriend: true,
 			next: 250,    
 			delay: 4000    
@@ -2142,7 +2142,7 @@ window._config = {
 				},
 				{
 					msg: '人类就是地球的主人!',
-					next: 349,
+					next: 249,
 					delay: 3000
 				}
 			]
@@ -2163,6 +2163,16 @@ window._config = {
 				{
 					msg: '他邀请我去的',
 					next: 263,
+					delay: 3000
+				}
+			]
+		},
+		9015: {
+			chatType: 2, //1-消息对话，2-回复选项
+			msgOption: [
+				{
+					msg: '什么是Ancient Aliens？',
+					next: 95,
 					delay: 3000
 				}
 			]
@@ -2622,7 +2632,7 @@ window._config = {
 				3: {
 					chatType: 1,//私聊3-9001选项1内容
 					actorId: 5,
-					msg: '我回头和修说让他加上。',
+					msg: '修马上就可以开发这个功能',
 					isFriend: true,
 					next: 9002,
 					delay: 4000
@@ -2638,31 +2648,31 @@ window._config = {
 				5: {
 					chatType: 1,//私聊3-9002选项内容
 					actorId: 5,
-					msg: '……我并不是一定要让你离开。但如果你不说自己的目的，我只能当你做可疑人物。',
-					isFriend: true,
-					next: 6,
-					delay: 5000
-				},
-				6: {
-					chatType: 1,
-					actorId: 5,
-					msg: '如果一个人真的相信原始外星人理论，便很难逃开阴谋论。',
-					isFriend: true,
-					next: 7,
-					delay: 5000
-				},
-				7: {
-					chatType: 1,
-					actorId: 5,
-					msg: '如果这个世界真的是阴谋论所说的，存在着什么大的秘密',
+					msg: '……我...并不是讨厌你，但如果你不说自己的目的，我只能当你做可疑人物。',
 					isFriend: true,
 					next: 319,
-					delay: 4000
+					delay: 5000
 				},
+			//	6: {
+				//	chatType: 1,
+			//		actorId: 5,
+			//		msg: '如果一个人真的相信原始外星人理论，便很难逃开阴谋论。',
+			//		isFriend: true,
+			//		next: 7,
+			//		delay: 5000
+			//	},
+			//	7: {
+			//		chatType: 1,
+			//		actorId: 5,
+			//		msg: '如果这个世界真的是阴谋论所说的，存在着什么大的秘密',
+			//		isFriend: true,
+			//		next: 319,
+			//		delay: 4000
+			//	},
 				319: {
 					chatType: 1,
 					actorId: 5,
-					msg: '那么，你突然闯入我们的群聊，又拿出了那样一个奇怪的理由，是不是可以说是阴谋的一环呢？',
+					msg: '你突然闯入我们的群聊，又拿出了那样一个奇怪的理由，是不是某个阴谋的一部分？',
 					isFriend: true,
 					next: 8,
 					delay: 4000
@@ -2670,7 +2680,7 @@ window._config = {
 				8: {
 					chatType: 1,
 					actorId: 5,
-					msg: '自然，我们讨论原始外星人理论不过是业余的一种兴趣而已。但谁知道是否有什么人注意到了我们这个群聊？',
+					msg: '我不认为你真的对外星人感兴趣，是否有什么人注意到了我们？我们都有自己的不愿被发现的一面。',
 					isFriend: true,
 					next: 320,
 					delay: 5000
@@ -2678,15 +2688,15 @@ window._config = {
 				320: {
 					chatType: 1,
 					actorId: 5,
-					msg: '如果真的存在外星人又和人类有接触，它们是否愿意我们讨论这些呢？如果我们在闲聊中，真的说中了某些事实。它们是否会要试探甚至铲除我们？',
+					msg: '不会告诉我你真的是外星人迷吧？我相信外星人存在，不代表我是一个靠感性直觉做判断的人，任何的陌生人都应抱着怀疑。',
 					isFriend: true,
 					next: 9,
-					delay: 6000
+					delay: 5000
 				},
 				9: {
 					chatType: 1,
 					actorId: 5,
-					msg: '当然，你可以说这是杞人忧天。但在逻辑上，这是合理的。',
+					msg: '你可以说这是杞人忧天。但在逻辑上，这是最合理的选择，也是我的处事原则。',
 					isFriend: true,
 					next: 9003,
 					delay: 2000
@@ -3235,7 +3245,71 @@ window._config = {
 			1: {
 					chatType: 1,
 					actorId: 8,
-					msg: '我是策划晶晶，系统架构不够完善请大家不要拍砖，毕竟代码也是我自己写的,,,自己提需求自己做需求= =多排一个系统就多一个工作量呢(┬＿┬) 以后再也不给开发GG乱提需求了',
+					msg: '瑶瑶，第三个任务内容写好了没呀？',
+					isFriend: true,
+					next: 11,
+					delay: 4000
+				},
+			11: {
+					chatType: 1,
+					actorId: 9,
+					msg: '没呢，哪有空，写着P9的剧本呢',
+					isFriend: true,
+					next: 12,
+					delay: 4000
+				},
+			12: {
+					chatType: 1,
+					actorId: 10,
+					msg: '我说你们选好了没？到底要二次元还是三次元风格呀？',
+					isFriend: true,
+					next: 13,
+					delay: 4000
+				},
+			13: {
+					chatType: 1,
+					actorId: 8,
+					msg: '还在纠结啊，rose和大miu意见都不统一',
+					isFriend: true,
+					next: 14,
+					delay: 5000
+				},
+			14: {
+					chatType: 1,
+					actorId: 9,
+					msg: '晶晶，说好的电话功能呢？我还等着听长风的声音呢',
+					isFriend: true,
+					next: 15,
+					delay: 4000
+				},
+			15: {
+					chatType: 1,
+					actorId: 8,
+					msg: '这不没时间做了嘛，不也得做P9的案子嘛~',
+					isFriend: true,
+					next: 16,
+					delay: 4000
+				},
+			16: {
+					chatType: 1,
+					actorId: 7,
+					msg: '【软糖加入聊天】',
+					isFriend: true,
+					next: 17,
+					delay: 4000
+				},
+			17: {
+					chatType: 1,
+					actorId: 10,
+					msg: '嘘，用户来了',
+					isFriend: true,
+					next: 18,
+					delay: 4000
+				},
+			18: {
+					chatType: 1,
+					actorId: 8,
+					msg: '我是策划晶晶，demo不够完善请大家不要拍砖，毕竟代码也是我自己写的,,,自己提需求自己做需求= =',
 					isFriend: true,
 					next: 2,
 					delay: 5000
